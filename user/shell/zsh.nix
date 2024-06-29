@@ -6,6 +6,9 @@
   programs.bat.enable = true;
   programs.eza.enable = true;
   programs.man.enable = true;
+  home.packages = [
+    pkgs.unstable.steam-run
+  ];
 
   programs.wezterm.enableZshIntegration = true;
   programs.fzf = {
@@ -148,6 +151,7 @@
     };
     shellAliases = {
       run = "nix-shell --command 'zsh' -p";
+      fhs = "steam-run";
       nsh = "nix-shell --command 'zsh'";
       nd = "nix develop";
       g = "git";
