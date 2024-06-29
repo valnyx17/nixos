@@ -1,0 +1,167 @@
+# Created by newuser for 5.9
+HISTFILE=~/.histfile
+HISTSIZE=100000000
+SAVEHIST=1000000000
+HISTDUP=erase
+
+setopt APPEND_HISTORY            # Append to histfile instead of overwriting.
+setopt SHARE_HISTORY             # Share history between all sessions.
+setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
+setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
+setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
+setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
+setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
+
+# Set the directory we want to store zinit (and plugins) in
+# The XDG_DATA_HOME:-$HOME... line chooses XDG_DATA_HOME if it exists, otherwise .local/share
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+# download zinit if it doesn't exist
+if [ ! -d "$ZINIT_HOME" ]; then
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+# load zinit
+source "${ZINIT_HOME}/zinit.zsh"
+
+#region plugins
+zinit light zsh-users/zsh-completions
+autoload -U compinit && compinit
+eval "$(fzf --zsh)"
+zinit light Aloxaf/fzf-tab
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-autosuggestions
+
+# snippets
+zinit snippet OMZP::git
+zinit snippet OMZP::sudo
+zinit snippet OMZP::debian
+zinit snippet OMZP::command-not-found
+zinit snippet OMZP::extract
+
+zinit cdreplay -q
+eval "$(zoxide init --cmd cd zsh)"
+#endregion
+
+#region setopts
+while read -r option; do
+  setopt $option
+done <<-EOF
+ALWAYS_TO_END
+AUTO_LIST
+AUTO_MENU
+AUTO_PARAM_SLASH
+AUTO_PUSHD
+ALWAYS_TO_END
+COMPLETE_IN_WORD
+EXTENDED_GLOB
+INC_APPEND_HISTORY
+INTERACTIVE_COMMENTS
+MENU_COMPLETE
+NO_BEEP
+NOTIFY
+PATH_DIRS
+PUSHD_IGNORE_DUPS
+PUSHD_SILENT
+EOF
+while read -r option; do
+  unsetopt $option
+done <<-EOF
+CASE_GLOB
+CORRECT
+EQUALS
+FLOWCONTROL
+NOMATCH
+EOF
+#endregion
+
+# bindkey -v
+# zmodload zsh/complist
+# bindkey -M menuselect 'h' vi-backward-char
+# bindkey -M menuselect 'k' vi-up-line-or-history
+# bindkey -M menuselect 'l' vi-forward-char
+# bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey "^a" vi-beginning-of-line
+bindkey "^e" vi-end-of-line
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+bindkey '^f' autosuggest-accept
+bindkey -M emacs '^[^[' sudo-command-line
+bindkey -M vicmd '^[^[' sudo-command-line
+bindkey -M viins '^[^[' sudo-command-line
+
+# zstyle ':completion:*' menu select
+zstyle ':completion:*' menu no
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion::complete:*' gain-privileges 1
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:+__zoxide_z:*' fzf-preview 'eza -1 --color=always $realpath'
+zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':completion:*:git-checkout:*' sort false
+# _comp_options+=(globdots)
+
+# prompt init
+eval "$(oh-my-posh init zsh --config ~/.config/omp/zen.toml)"
+
+#region dirHashes
+hash -d "dl"="$HOME/Downloads"
+hash -d "docs"="$HOME/Documents"
+hash -d "dev"="$HOME/dev"
+hash -d "dots"="$HOME/sysconf"
+hash -d "pics"="$HOME/Pictures"
+hash -d "vids"="$HOME/Videos"
+#endregion
+
+#region env
+export DIRENV_LOG_FORMAT=""
+export LC_ALL="en_US.UTF-8"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+export KEYTIMEOUT=1
+export GPG_TTY=$(tty)
+export PATH="$PATH:$HOME/bin"
+export FLAKE="$HOME/sysconf/nix"
+#endregion
+
+#region aliases
+alias run="nix-shell --command 'zsh' -p"
+alias nsh="nix-shell --command 'zsh'"
+alias nd="nix develop"
+alias g="git"
+alias gs="git st"
+alias gst="git st"
+
+alias src="cd $HOME/dev"
+alias sv0="ssh -l root proxmox"
+alias nmcs="ssh -l kd nmcs"
+
+alias pn="pnpm"
+
+alias rm="rm -rf"
+alias cp="cp -ri"
+alias mkdir="mkdir -p"
+alias free="free -m"
+alias j="just"
+alias ed="code"
+alias n="nvim"
+alias cdr="cd \$(git rev-parse --show-toplevel)"
+
+alias l="eza -al --no-time --group-directories-first"
+alias ls="eza -al --no-time --group-directories-first"
+alias la="eza -a"
+alias ll="eza -l --no-time --group-directories-first"
+alias lt="eza -aT --no-time --group-directories-first"
+
+alias cat="bat --theme gruvbox-dark --style numbers,changes --color=always --tabs=2 --wrap=never"
+alias diff="delta"
+alias top="btm"
+alias c="clear"
+alias glg="git lg"
+alias ghr="gh repo"
+alias serve="python3 -m http.server"
+alias ytmp3="yt-dlp --ignore-errors --format bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail --embed-metadata --output '%(title)s.%(ext)s'"
+#endregion
