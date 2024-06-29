@@ -1,10 +1,7 @@
-[![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
-
 <h1 align="center">deva's nixos flake</h1>
 
-<br>
-
 <p align="center">
+   <a href="https://builtwithnix.org"><img src="https://builtwithnix.org/badge.svg" alt="built with nix" height="20"/></a>
    <img src="https://img.shields.io/github/license/devawaves/nixos" alt="License Badge"/>
 </p>
 
@@ -15,15 +12,15 @@
 to explore the flake output and it's functionalities, run:
 
 ```sh
-nix flake show github:devawaves/flake
+nix flake show github:devawaves/nixos
 ```
 
-to clone to an existing nixos system, run:
+to clone this repository to an existing nixos system, run:
 ```sh
 nix run github:devawaves/nixos#clone
 ```
 
-to get the disko, run:
+to get the disko.nix file, run:
 ```sh
 nix run github:devawaves/nixos#disko
 ```
