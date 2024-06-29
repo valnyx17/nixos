@@ -16,6 +16,7 @@
     jetbrains.idea-community
     vscode
     cascadia-code
+    jdk17
   ];
 
   programs = {
