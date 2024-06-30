@@ -172,12 +172,17 @@
     };
     gh = {
       enable = true;
+      extensions = [
+	pkgs.gh-copilot
+      ];
+      gitCredentialHelper.enable = true;
       settings = {
         editor = "nvim";
         git_protocol = "ssh";
         aliases = {
           co = "pr checkout";
           rc = "repo clone";
+	  cp = "copilot";
         };
       };
     };
