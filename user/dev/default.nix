@@ -17,6 +17,8 @@
     vscode
     cascadia-code
     jdk17
+    ncdu
+    httpie
   ];
 
   programs = {
