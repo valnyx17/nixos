@@ -12,6 +12,8 @@
     neovide
     nodejs
     corepack
+    cargo-watch
+    rustup
 
     jetbrains.idea-community
     vscode
