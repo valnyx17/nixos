@@ -6,7 +6,7 @@
   inputs,
   ...
 }: {
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {allowUnfree = true;};
   nixpkgs.overlays = [
     outputs.overlays.additions
     outputs.overlays.modifications
@@ -28,6 +28,7 @@
       flake-registry = "";
       # Workaround for https://github.com/NixOS/nix/issues/9574
       nix-path = config.nix.nixPath;
+      # allowUnfree = true;
     };
     # Opinionated: disable channels
     channel.enable = false;
@@ -88,7 +89,7 @@
   programs = {
     less.enable = true;
 
-    # default zsh config
+    # default zsh config if not configured using home-manager
     zsh = {
       enable = true;
       enableCompletion = true;
@@ -109,10 +110,6 @@
 
   services.libinput.enable = true;
   services.printing.enable = true;
-
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.enable = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";

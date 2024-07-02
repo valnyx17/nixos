@@ -3,10 +3,6 @@
   config,
   ...
 }: {
-  imports = [
-    ./gnome.nix
-  ];
-
   home.packages = [
     pkgs.noto-fonts
     pkgs.noto-fonts-emoji

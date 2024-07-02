@@ -81,25 +81,17 @@
         inputs.disko.nixosModules.default
         (import ./disko.nix {device = "/dev/nvme1n1";})
         {networking.hostName = "waves";}
-        ./os
+        ./os/configuration.nix
         ./waves-hardware.nix
-        ./user/users.nix
         inputs.impermanence.nixosModules.impermanence
         inputs.stylix.nixosModules.stylix
+        inputs.home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+        }
+        ./os/users.nix
         ./os/styling.nix
-      ];
-    };
-
-    homeConfigurations.deva = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      extraSpecialArgs = {inherit inputs outputs;};
-      modules = [
-        ./home.nix
-        ./user/desktop
-        ./user/dev
-        ./user/shell/zsh.nix
-        ./user/services.nix
-        ./user/apps
       ];
     };
   };
