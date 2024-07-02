@@ -6,7 +6,7 @@
 prev.tmuxPlugins.mkTmuxPlugin {
   pluginName = "tokyo-night-tmux";
   version = "c3bc283cceeefaa7e5896878fe20711f466ab591";
-  src = fetchFromGithub {
+  src = prev.fetchFromGithub {
     owner = "janoamaral";
     repo = "tokyo-night-tmux";
     rev = "c3bc283cceeefaa7e5896878fe20711f466ab591";

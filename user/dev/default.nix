@@ -175,7 +175,7 @@
     gh = {
       enable = true;
       extensions = [
-	pkgs.gh-copilot
+        pkgs.gh-copilot
       ];
       gitCredentialHelper.enable = true;
       settings = {
@@ -184,7 +184,7 @@
         aliases = {
           co = "pr checkout";
           rc = "repo clone";
-	  cp = "copilot";
+          cp = "copilot";
         };
       };
     };
@@ -197,23 +197,7 @@
         vim-tmux-navigator
         yank
         {
-          plugin = mkTmuxPlugin {
-            pluginName = "tokyo-night-tmux";
-            version = "c3bc283cceeefaa7e5896878fe20711f466ab591";
-            src = fetchFromGithub {
-              owner = "janoamaral";
-              repo = "tokyo-night-tmux";
-              rev = "c3bc283cceeefaa7e5896878fe20711f466ab591";
-              hash = "sha256-3rMYYzzSS2jaAMLjcQoKreE0oo4VWF9dZgDtABCUOtY=";
-            };
-            rtpFilePath = "tokyo-night.tmux";
-            meta = {
-              homepage = "https://github.com/janoamaral/tokyo-night-tmux";
-              description = "tokyo night tmux theme";
-              license = lib.licenses.mit;
-              platforms = lib.platforms.unix;
-            };
-          };
+          plugin = tokyo-night-tmux;
           extraConfig = ''
             set -g @tokyo-night-tmux_show_datetime 0
             set -g @tokyo-night-tmux_show_path 1
