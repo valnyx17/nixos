@@ -13,6 +13,23 @@
     outputs.overlays.unstable-packages
   ];
 
+  virtualisation.docker = {
+    enable = true;
+    enableNvidia = builtins.any (driver: driver == "nvidia") config.services.xserver.videoDrivers;
+  };
+
+  virtualisation.vmware.host.enable = true;
+
+  programs.seahorse.enable = true;
+  services.gnome.gnome-keyring.enable = true;
+
+  # security
+  security = {
+    sudo.wheelNeedsPassword = false; # don't ask password for wheel group, disk is encrypted with a secure password & ssh auth with password is disabled!
+    # enable trusted platform module 2 support
+    tpm2.enable = true;
+  };
+
   environment.systemPackages = with pkgs; [
     neovim
     firefox
@@ -29,6 +46,21 @@
       # Workaround for https://github.com/NixOS/nix/issues/9574
       nix-path = config.nix.nixPath;
       # allowUnfree = true;
+      auto-optimise-store = true;
+      builders-use-substitutes = true;
+      keep-derivations = true;
+      keep-outputs = true;
+      trusted-users = ["root" "@wheel"];
+
+      substituters = [
+        "https://cache.nixos.org"
+        "https://nix-community.cachix.org"
+      ];
+
+      trusted-public-keys = [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      ];
     };
     # Opinionated: disable channels
     channel.enable = false;
@@ -41,8 +73,11 @@
   services.openssh = {
     enable = true;
     settings = {
+      KbdInteractiveAuthentication = false;
       PermitRootLogin = "no";
       PasswordAuthentication = false;
+      UseDns = true;
+      X11Forwarding = false;
     };
   };
 
