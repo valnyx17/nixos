@@ -6,6 +6,7 @@
   programs.bat.enable = true;
   programs.eza.enable = true;
   programs.man.enable = true;
+  programs.nix-index.enableZshIntegration = false;
   home.packages = [
     pkgs.unstable.steam-run
   ];

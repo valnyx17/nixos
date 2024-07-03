@@ -182,7 +182,9 @@ in {
 
     home-manager.users = lib.mkIf (config.user != null) (lib.attrsets.mapAttrs (name: userConfig: {
         imports =
-          []
+          [
+	  inputs.nix-index-db.hmModules.nix-index
+	  ]
           ++ (
             if name != "root"
             then [
@@ -301,6 +303,9 @@ in {
         };
         programs.home-manager.enable = true;
         programs.git.enable = true;
+	programs.nix-index.enable = true;
+	programs.nix-index.symlinkToCacheHome = true;
+	programs.nix-index-database.comma.enable = true;
         systemd.user.startServices = "sd-switch";
       })
       config.user);
