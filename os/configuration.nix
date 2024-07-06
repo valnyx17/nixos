@@ -115,6 +115,7 @@
     ];
     files = [
       "/etc/machine-id"
+      "/etc/shadow"
     ];
   };
 
