@@ -51,7 +51,7 @@ console_title_template = '{{if .Root}}(Admin){{end}} {{ .PWD }}'
       "{{if gt .Code 0}}red{{end}}"
     ]
     background = 'transparent'
-    template = '{{if eq .UserName "root" }}#{{else}}~{{end}}'
+    template = '{{if eq .UserName "root" }}#{{else}}🞂{{end}}'
 
 [transient_prompt]
   foreground_templates = [

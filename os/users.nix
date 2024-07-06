@@ -22,6 +22,7 @@
       blockbench
       blender
       prismlauncher
+      steam
     ];
   };
   user.root = {
