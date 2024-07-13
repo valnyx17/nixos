@@ -109,6 +109,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "bak";
         }
         ./os/users.nix
         ./os/styling.nix

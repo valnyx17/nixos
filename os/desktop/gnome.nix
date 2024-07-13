@@ -13,6 +13,7 @@
         enabled-extensions = [
           "user-theme@gnome-shell-extensions.gcampax.github.com"
           "unite@hardpixel.eu"
+          "zen@le0.gs"
         ];
       };
 
@@ -41,7 +42,7 @@
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
         binding = "<Super>Return";
-        command = "kitty";
+        command = "wezterm";
         name = "Open Terminal";
       };
 
@@ -62,6 +63,7 @@
     # Gnome extensions
     gnomeExtensions.unite
     gnomeExtensions.user-themes
+    gnomeExtensions.zen
 
     # Theme
     materia-theme
@@ -70,7 +72,7 @@
     enable = true;
 
     font = {
-      name = "Iosevka";
+      name = "Cascadia Code";
       size = 12;
     };
 

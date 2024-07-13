@@ -62,7 +62,7 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
-    neovim
+    unstable.neovim
     firefox
     #jmtpfs
   ];
