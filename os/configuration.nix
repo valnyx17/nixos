@@ -309,6 +309,10 @@ in {
           path = "/home/deva/sync";
           devices = ["truenas"];
         };
+        "zettelkasten" = {
+          path = "/home/deva/zet";
+          devices = ["truenas"];
+        };
       };
     };
   };
