@@ -36,6 +36,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    mysecrets = {
+      url = "git+ssh://git@192.168.1.203:2222/deva/secrets.git?ref=main&shallow=1";
+      flake = false;
+    };
+
     stylix.url = "github:danth/stylix";
   };
 

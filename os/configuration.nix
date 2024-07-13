@@ -5,10 +5,36 @@
   outputs,
   inputs,
   ...
-}: {
+}: let
+  secretspath = builtins.toString inputs.mysecrets;
+in {
   imports = [
     inputs.nix-gaming.nixosModules.pipewireLowLatency
+    inputs.sops-nix.nixosModules.sops
   ];
+
+  sops.defaultSopsFormat = "yaml";
+  sops.defaultSopsFile = "${secretspath}/secrets.yaml";
+  sops.validateSopsFiles = false;
+  # sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  # sops.age.keyFile = "/var/lib/sops-nix/key.txt";
+  # sops.age.generateKey = true;
+
+  # This file below is the only file that needs to be copied over (for sops support)
+  sops.age.keyFile = "/home/${config.users.users.me.name}/.config/sops/age/keys.txt";
+  sops.secrets = {
+    id_dev = {
+      owner = config.users.users.me.name;
+      inherit (config.users.users.me) group;
+      path = "/home/${config.users.users.me.name}/.ssh/id_dev";
+    };
+    user_password = {
+      neededForUsers = true;
+    };
+  };
+  home-manager.users.me.home.file.".ssh/id_dev.pub".text = builtins.readFile ./id_dev.pub;
+  users.mutableUsers = false;
+  users.users.me.hashedPasswordFile = config.sops.secrets.user_password.path;
 
   nixpkgs.config = {allowUnfree = true;};
   nixpkgs.overlays = [

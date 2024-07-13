@@ -1,10 +1,14 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   imports = [./util/user.nix ./gnome_support.nix];
 
-  user.deva = {
+  user.me = {
+    username = "deva";
     shell = "zsh";
     description = "Deva Waves";
-    initialPassword = "12345";
     sudoer = true;
     developer = true;
     extraGroups = ["networkmanager" "audio" "docker" "input" "libvirtd" "plugdev" "video" "adbusers"];
