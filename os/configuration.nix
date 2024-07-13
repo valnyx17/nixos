@@ -132,6 +132,7 @@ in {
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
+      "/root/.local/share/zinit"
       {
         directory = "/var/lib/colord";
         user = "colord";
@@ -141,7 +142,6 @@ in {
     ];
     files = [
       "/etc/machine-id"
-      "/etc/shadow"
     ];
   };
 
