@@ -278,4 +278,38 @@ in {
       };
     };
   };
+
+  # local name resolution???
+  services.avahi = {
+    enable = true;
+    openFirewall = true;
+  };
+  system.nssModules = pkgs.lib.optional true pkgs.nssmdns;
+  system.nssDatabases.hosts = pkgs.lib.optionals true (pkgs.lib.mkMerge [
+    (pkgs.lib.mkBefore ["mdns4_minimal [NOTFOUND=return]"]) # before resolution
+    (pkgs.lib.mkAfter ["mdns4"]) # after dns
+  ]);
+
+  services.syncthing = {
+    enable = true;
+    user = "deva";
+    dataDir = "/home/deva";
+    configDir = "/home/deva/.config/syncthing";
+    overrideDevices = true;
+    overrideFolders = true;
+    settings = {
+      devices = {
+        "truenas" = {
+          id = "2HEHVRP-6Z4FBIB-MULQ6Y2-XP2IW6Q-WVOVKOR-HSJBZ3O-RUN7DZI-SAM2SAA";
+          autoAcceptFolders = true;
+        };
+      };
+      folders = {
+        "Explicit Sync" = {
+          path = "/home/deva/sync";
+          devices = ["truenas"];
+        };
+      };
+    };
+  };
 }
