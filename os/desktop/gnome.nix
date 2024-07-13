@@ -11,7 +11,7 @@
         disable-user-extensions = false;
 
         enabled-extensions = [
-          "user-theme@gnome-shell-extensions.gcampax.github.com"
+          # "user-theme@gnome-shell-extensions.gcampax.github.com"
           "unite@hardpixel.eu"
           "zen@le0.gs"
         ];
