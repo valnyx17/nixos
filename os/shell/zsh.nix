@@ -178,7 +178,9 @@
       cat = "bat --theme gruvbox-dark --style numbers,changes --color=always --tabs=2 --wrap=never";
       diff = "delta";
       top = "btm";
-      c = "clear";
+      c = "code";
+      cr = "code -r";
+      cw = "code --wait";
       glg = "git lg";
       ghr = "gh repo";
       serve = "python3 -m http.server";
