@@ -15,6 +15,9 @@
         lib = prev.lib;
       };
     });
+    koboldcpp = prev.koboldcpp.override {
+      cublasSupport = true;
+    };
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
