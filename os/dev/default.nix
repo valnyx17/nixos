@@ -162,6 +162,10 @@ in {
       };
 
       aliases = {
+        wta = "worktree add";
+        wtl = "worktree list";
+        wtr = "worktree remove";
+        rh = "reset HEAD"; # unstages all changes
         lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --";
         lgb = "--no-pager log --oneline --decorate --graph --parents --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --";
         nuke = "!git clean -xdf && git reset --hard && git pull";
@@ -197,7 +201,6 @@ in {
         "*~"
         "*.swp"
         "*result*"
-        ".direnv"
         "todo.md"
         "node_modules"
       ];
