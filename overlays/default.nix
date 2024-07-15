@@ -9,12 +9,14 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
-    tmuxPlugins = prev.tmuxPlugins.extend (final': prev': {
-      tokyo-night-tmux = prev.callPackage ../pkgs/tmux-tokyo-night.nix {
-        prev = prev;
-        lib = prev.lib;
+    tmuxPlugins =
+      prev.tmuxPlugins
+      // {
+        tokyo-night-tmux = prev.callPackage ../pkgs/tmux-tokyo-night.nix {
+          pkgs = prev;
+          lib = prev.lib;
+        };
       };
-    });
     koboldcpp = prev.koboldcpp.override {
       cublasSupport = true;
     };
