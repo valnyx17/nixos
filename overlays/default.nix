@@ -20,6 +20,8 @@
     koboldcpp = prev.koboldcpp.override {
       cublasSupport = true;
     };
+
+    gnome-keyring = prev.gnome.gnome-keyring;
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
