@@ -27,7 +27,7 @@
       blender
       prismlauncher
       steam
-      koboldcpp
+      unstable.koboldcpp
     ];
   };
   user.root = {

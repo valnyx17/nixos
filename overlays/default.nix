@@ -17,10 +17,6 @@
           lib = prev.lib;
         };
       };
-    koboldcpp = prev.koboldcpp.override {
-      cublasSupport = true;
-    };
-
     gnome-keyring = prev.gnome.gnome-keyring;
   };
 

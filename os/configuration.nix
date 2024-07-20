@@ -36,7 +36,10 @@ in {
   users.mutableUsers = false;
   users.users.me.hashedPasswordFile = config.sops.secrets.user_password.path;
 
-  nixpkgs.config = {allowUnfree = true;};
+  nixpkgs.config = {
+    allowUnfree = true;
+    cudaSupport = true;
+  };
   nixpkgs.overlays = [
     outputs.overlays.additions
     outputs.overlays.modifications
