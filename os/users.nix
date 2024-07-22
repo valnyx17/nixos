@@ -16,7 +16,7 @@
     desktopEnvironment = "gnome";
     obs = true;
     authorizedKeys = [
-      (builtins.readFile ./id_dev.pub)
+      (builtins.readFile ./id_deva.pub)
     ];
     packages = with pkgs; [
       nom
@@ -34,7 +34,7 @@
     shell = "zsh";
     extraGroups = [];
     authorizedKeys = [
-      (builtins.readFile ./id_dev.pub)
+      (builtins.readFile ./id_deva.pub)
     ];
   };
 }

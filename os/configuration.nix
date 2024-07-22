@@ -21,18 +21,18 @@ in {
   # sops.age.generateKey = true;
 
   # This file below is the only file that needs to be copied over (for sops support)
-  sops.age.keyFile = "/home/${config.users.users.me.name}/.config/sops/age/keys.txt";
+  sops.age.keyFile = "/etc/sops-keys.txt";
   sops.secrets = {
-    id_dev = {
+    id_deva = {
       owner = config.users.users.me.name;
       inherit (config.users.users.me) group;
-      path = "/home/${config.users.users.me.name}/.ssh/id_dev";
+      path = "/home/${config.users.users.me.name}/.ssh/id_deva";
     };
     user_password = {
       neededForUsers = true;
     };
   };
-  home-manager.users.me.home.file.".ssh/id_dev.pub".text = builtins.readFile ./id_dev.pub;
+  home-manager.users.me.home.file.".ssh/id_deva.pub".text = builtins.readFile ./id_deva.pub;
   users.mutableUsers = false;
   users.users.me.hashedPasswordFile = config.sops.secrets.user_password.path;
 
@@ -145,6 +145,7 @@ in {
     ];
     files = [
       "/etc/machine-id"
+      "/etc/sops-keys.txt"
     ];
   };
 

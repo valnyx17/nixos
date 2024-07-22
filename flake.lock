@@ -419,10 +419,10 @@
     "mysecrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1720910245,
-        "narHash": "sha256-xACM/LGDLmgy8JQIPWojb5KOiIqbQpofX9WUbGQHiZE=",
+        "lastModified": 1721677492,
+        "narHash": "sha256-VQBIEuO01t4Tq4We5ER9/GV/mbHXVQSf3zD7s6vwSqY=",
         "ref": "main",
-        "rev": "2f617698545719fd26f7fc074a0da1e6673e62d9",
+        "rev": "1e1c10a8bd978220aa4cea5c3a13f726971276f2",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@192.168.1.203:2222/deva/secrets.git"
