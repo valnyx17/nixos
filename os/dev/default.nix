@@ -35,25 +35,27 @@ in {
   programs.zsh.shellAliases = {
     pst = "${wantgunsbin_script}/bin/pst";
   };
-  home.packages = with pkgs.unstable; [
-    bruno
-    just
-    nil
-    alejandra
-    zoxide
-    neovide
-    nodejs
-    corepack
-    cargo-watch
-    rustup
-    go
-
-    jetbrains.idea-community
-    vscode
-    cascadia-code
-    jdk17
-    ncdu
-    httpie
+  home.packages = with pkgs; [
+    unstable.bruno
+    unstable.xclip
+    unstable.just
+    unstable.nil
+    unstable.alejandra
+    unstable.zoxide
+    unstable.neovide
+    unstable.nodejs
+    unstable.corepack
+    unstable.cargo-watch
+    unstable.rustup
+    unstable.go
+    # unstable.
+    unstable.jetbrains.idea-community
+    #unstable.vscode-fhs
+    unstable.cascadia-code
+    unstable.jdk17
+    unstable.ncdu
+    unstable.httpie
+    zed-fhs
   ];
 
   programs = {

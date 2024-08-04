@@ -1,0 +1,74 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "#525252",
+          "style": "plain",
+          "template": "\u25b3 ",
+          "type": "text"
+        },
+        {
+          "foreground": "#dde1e6",
+          "properties": {
+            "folder_separator_icon": " / ",
+            "home_icon": "home",
+            "style": "agnoster_full"
+          },
+          "style": "plain",
+          "template": "{{.Path}} ",
+          "type": "path"
+        },
+        {
+          "foreground": "#dde1e6",
+          "properties": {
+            "branch_icon": "",
+            "branch_ahead_icon": "\u21e1 ",
+            "branch_behind_icon": "\u21e3 ",
+            "fetch_stash_count": true,
+            "fetch_status": true,
+            "fetch_upstream_icon": true,
+            "github_icon": ""
+          },
+          "style": "plain",
+          "template": "<#525252>git:(</>{{.HEAD}}<#525252>, </>{{if .BranchStatus }}{{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}<#dde1e6>*</>{{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }}<#525252>)</> ",
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#fff",
+          "foreground_templates": [
+            "{{if gt .Code 0 }}#BF616A{{ end }}",
+            "{{if contains .Env.IN_NIX_SHELL \"pure\"}}#81A1C1{{end}}"
+          ],
+          "style": "plain",
+          "template": "<b>\uf441</b> ",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "console_title_template": "{{if .Root}}(root){{end}} {{.PWD}}",
+  "transient_prompt": {
+    "foreground": "#fff",
+    "foreground_templates": [
+      "{{if gt .Code 0 }}#BF616A{{ end }}",
+      "{{if contains .Env.IN_NIX_SHELL \"pure\"}}#81A1C1{{end}}"
+    ],
+    "template": "<b>\uf441</b> "
+  },
+  "secondary_prompt": {
+    "foreground": "#525252",
+    "template": "\u25b3 "
+  },
+  "version": 2
+}

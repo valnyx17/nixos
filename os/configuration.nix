@@ -66,8 +66,12 @@ in {
 
   environment.systemPackages = with pkgs; [
     unstable.neovim
+    fuse3
     firefox
     #jmtpfs
+    kanata
+    localsend
+    parsec-bin
   ];
 
   services.gvfs.enable = true;
@@ -122,6 +126,11 @@ in {
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelModules = ["uinput" "fuse"];
+
+  services.udev.extraRules = ''
+    KERNEL=="uinput", SUBSYSTEM=="misc", TAG+="uaccess", OPTIONS+="static_node=uinput", GROUP="input", MODE="0660"
+  '';
 
   boot.initrd.postDeviceCommands = lib.mkAfter (builtins.readFile ./btrfs-impermanence);
 

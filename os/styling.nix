@@ -1,25 +1,36 @@
 {pkgs, ...}: {
-  stylix.base16Scheme = {
-    # oxocarbon dark
-    base00 = "161616";
-    base01 = "262626";
-    base02 = "393939";
-    base03 = "525252";
-    base04 = "dde1e6";
-    base05 = "f2f4f8";
-    base06 = "ffffff";
-    base07 = "08bdba";
-    base08 = "3ddbd9";
-    base09 = "78a9ff";
-    base0A = "ee5396";
-    base0B = "33b1ff";
-    base0C = "ff7eb6";
-    base0D = "42be65";
-    base0E = "be95ff";
-    base0F = "82cfff";
+  stylix.enable = true;
+
+  # stylix.base16Scheme = {
+  #   # oxocarbon dark
+  #   base00 = "161616";
+  #   base01 = "262626";
+  #   base02 = "393939";
+  #   base03 = "525252";
+  #   base04 = "dde1e6";
+  #   base05 = "f2f4f8";
+  #   base06 = "ffffff";
+  #   base07 = "08bdba";
+  #   base08 = "3ddbd9";
+  #   base09 = "78a9ff";
+  #   base0A = "ee5396";
+  #   base0B = "33b1ff";
+  #   base0C = "ff7eb6";
+  #   base0D = "42be65";
+  #   base0E = "be95ff";
+  #   base0F = "82cfff";
+  # };
+
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+
+  stylix.fonts = {
+    monospace = {
+      package = pkgs.cascadia-code;
+      name = "Cascadia Code NF";
+    };
   };
 
-  stylix.image = ./nix-wallpaper.png;
+  stylix.image = ./desktop/nix-wallpaper.png;
 
   stylix.cursor.package = pkgs.graphite-cursors;
   stylix.cursor.name = "graphite-dark";

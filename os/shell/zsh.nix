@@ -9,6 +9,8 @@
   programs.nix-index.enableZshIntegration = true;
   home.packages = [
     pkgs.unstable.steam-run
+    pkgs.delta
+    pkgs.bottom
   ];
 
   programs.wezterm.enableZshIntegration = true;
@@ -130,7 +132,7 @@
       bindkey -M viins '^[^[' sudo-command-line
 
       # prompt init
-      eval "$(${pkgs.oh-my-posh}/bin/oh-my-posh init zsh --config ${./prompt-zen.toml})"
+      eval "$(${pkgs.oh-my-posh}/bin/oh-my-posh init zsh --config ${./prompt.json})"
     '';
     dirHashes = {
       dl = "${config.home.homeDirectory}/Downloads";
@@ -138,8 +140,8 @@
       src = "${config.home.homeDirectory}/src";
       dots = "${config.home.homeDirectory}/nix";
       nix = "${config.home.homeDirectory}/nix";
-      pics = "${config.home.homeDirectory}/Documents";
-      vids = "${config.home.homeDirectory}/Documents";
+      pics = "${config.home.homeDirectory}/Pictures";
+      vids = "${config.home.homeDirectory}/Videos";
     };
     sessionVariables = {
       DIRENV_LOG_FORMAT = "";
@@ -182,7 +184,6 @@
       cr = "code -r";
       cw = "code --wait";
       glg = "git lg";
-      ghr = "gh repo";
       serve = "python3 -m http.server";
       ytmp3 = "yt-dlp --ignore-errors --format bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail --embed-metadata --output '%(title)s.%(ext)s'";
     };

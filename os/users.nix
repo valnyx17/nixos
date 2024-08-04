@@ -9,9 +9,10 @@
     username = "deva";
     shell = "zsh";
     description = "Deva Waves";
+    initialPassword = "12345";
     sudoer = true;
     developer = true;
-    extraGroups = ["networkmanager" "audio" "docker" "input" "libvirtd" "plugdev" "video" "adbusers"];
+    extraGroups = ["networkmanager" "audio" "docker" "input" "libvirtd" "plugdev" "video" "adbusers" "uinput"];
     normalUser = true;
     desktopEnvironment = "gnome";
     obs = true;

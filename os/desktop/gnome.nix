@@ -17,9 +17,9 @@
         ];
       };
 
-      "org/gnome/shell/extensions/user-theme" = {
-        name = "Materia-dark";
-      };
+      # "org/gnome/shell/extensions/user-theme" = {
+      #   name = "Materia-dark";
+      # };
 
       "org/gnome/shell/extensions/unite" = {
         desktop-name-text = "Desktop";
@@ -32,9 +32,9 @@
         window-buttons-theme = "arc";
       };
 
-      "org/gnome/desktop/interface" = {
-        color-scheme = "prefer-dark";
-      };
+      # "org/gnome/desktop/interface" = {
+      #   color-scheme = "prefer-dark";
+      # };
 
       "org/gnome/desktop/wm/preferences" = {
         resize-with-right-button = true;
@@ -52,10 +52,10 @@
         ];
       };
 
-      "org/gnome/desktop/background" = {
-        picture-uri = "file:///${./wallpaper.jpg}";
-        picture-uri-dark = "file:///${./nix-wallpaper.png}";
-      };
+      # "org/gnome/desktop/background" = {
+      #   picture-uri = "file:///${./wallpaper.jpg}";
+      #   picture-uri-dark = "file:///${./nix-wallpaper.png}";
+      # };
     };
   };
 
@@ -68,23 +68,24 @@
     # Theme
     materia-theme
   ];
+  dconf.settings."org/gnome/desktop/interface".font-name = pkgs.lib.mkForce "Cascadia Code NF 12";
   gtk = {
     enable = true;
 
-    font = {
-      name = "Cascadia Code";
-      size = 12;
-    };
+    # font = pkgs.lib.mkForce {
+    #   name = "Cascadia Code NF";
+    #   size = 12;
+    # };
 
     iconTheme = {
       name = "Zafiro-icons-Dark";
       package = pkgs.zafiro-icons;
     };
 
-    theme = {
-      name = "Materia-dark";
-      package = pkgs.materia-theme;
-    };
+    # theme = {
+    #   name = "Materia-dark";
+    #   package = pkgs.lib.mkForce pkgs.materia-theme;
+    # };
 
     gtk2 = {
       configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
