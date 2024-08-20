@@ -40,6 +40,13 @@
 	in {
 			packages = (import ./pkgs pkgs);
 
+			apps = {
+				"disko" = {
+					type = "app";
+					program = self.outputs.packages.${system}.disko;
+				};
+			};
+
 			formatter = pkgs.alejandra;
 
 			overlays = import ./overlays {inherit inputs;};
