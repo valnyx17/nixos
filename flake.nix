@@ -62,8 +62,8 @@
 				];
 			};
 
-			homeConfigurations."dv" = home-manager.lib.homeManagerConfiguration {
-				inherit pkgs;
+			homeConfigurations."dv@waves" = home-manager.lib.homeManagerConfiguration {
+				pkgs = import nixpkgs { system = system; };
 
 				modules = [
 					./modules/home/dv.nix

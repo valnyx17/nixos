@@ -89,6 +89,7 @@ in  {
 
    boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
+  networking.hostName = "waves";
   networking.networkmanager.enable = true;
   boot.supportedFilesystems = ["ntfs"];
 }
