@@ -43,7 +43,7 @@
 			apps = {
 				"disko" = {
 					type = "app";
-					program = self.outputs.packages.${system}.disko;
+					program = "${self.outputs.packages.${system}.disko}/bin/disko";
 				};
 			};
 

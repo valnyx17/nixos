@@ -3,3 +3,12 @@ pkgs: pkgs.writeShellScriptBin "disko" ''
   ${builtins.readFile ../disko.nix}
   EOL
 ''
+# pkgs: pkgs.writeShellApplication {
+#   name = "disko";
+#
+#   text = ''
+#     cat >disko.nix <<EOL
+#     ${builtins.readFile ../disko.nix}
+#     EOL
+#   '';
+# }
