@@ -35,14 +35,7 @@
           "style": "plain",
           "template": "<#525252>git:(</>{{.HEAD}}<#525252>, </>{{if .BranchStatus }}{{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}<#dde1e6>*</>{{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }}<#525252>)</> ",
           "type": "git"
-        }
-      ],
-      "type": "prompt"
-    },
-    {
-      "alignment": "left",
-      "newline": true,
-      "segments": [
+        },
         {
           "foreground": "#fff",
           "foreground_templates": [
@@ -50,7 +43,7 @@
             "{{if contains .Env.IN_NIX_SHELL \"pure\"}}#81A1C1{{end}}"
           ],
           "style": "plain",
-          "template": "<b>\uf441</b> ",
+          "template": "<b>λ</b> ",
           "type": "text"
         }
       ],
@@ -64,7 +57,7 @@
       "{{if gt .Code 0 }}#BF616A{{ end }}",
       "{{if contains .Env.IN_NIX_SHELL \"pure\"}}#81A1C1{{end}}"
     ],
-    "template": "<b>\uf441</b> "
+    "template": "<b>λ</b> "
   },
   "secondary_prompt": {
     "foreground": "#525252",

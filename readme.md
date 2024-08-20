@@ -1,7 +1,7 @@
 <h1 align="center">deva's nixos flake</h1>
 
 <p align="center">
-   <a href="https://builtwithnix.org"><img src="https://builtwithnix.org/badge.svg" alt="built with nix" height="20"/></a>
+   <a href="https://nixos.org"><img src="https://builtwithnix.org/badge.svg" alt="built with nix" height="20"/></a>
    <img src="https://img.shields.io/github/license/devawaves/nixos" alt="License Badge"/>
 </p>
 

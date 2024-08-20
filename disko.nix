@@ -7,7 +7,7 @@
 #            to get rid of impermanance support, simply remove the "/persist" btrfs subvolume.
 # to import, add this to the imports list:
 # (import ./disko.nix { device = "/dev/?" })
-{device ? throw "Set this to your disk device, e.g. /dev/sda", ...}: {
+{device ? throw "Set this to your disk device, e.g. /dev/disk/by-id/...", ...}: {
   disko.devices = {
     disk = {
       main = {
@@ -77,10 +77,6 @@
                 };
                 "/nix" = {
                   mountpoint = "/nix";
-                  mountOptions = ["compress=zstd" "noatime"];
-                };
-                "/persist" = {
-                  mountpoint = "/persist";
                   mountOptions = ["compress=zstd" "noatime"];
                 };
               };

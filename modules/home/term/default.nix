@@ -1,12 +1,134 @@
 {
-  pkgs,
-  config,
-  ...
-}: {
-  programs.bat.enable = true;
+    config,
+    pkgs,
+    ...
+}: let
+  pst = pkgs.writeShellScriptBin "pst" (builtins.readFile ./pst);
+in {
+    programs = {
+wezterm = {
+      enable = true;
+      extraConfig = builtins.readFile ./wezterm.lua;
+    };
+    lf = {
+      enable = true;
+      commands = {
+        dragon-out = ''%${pkgs.xdragon}/bin/xdragon -a -x "$fx"'';
+        editor-open = ''$$EDITOR $f'';
+        mkdir = ''
+          ''${{
+            printf "Directory Name: "
+            read DIR
+            mkdir $DIR
+          }}
+        '';
+      };
+      keybindings = {
+        "\\\"" = "";
+        o = "";
+        c = "mkdir";
+        D = ''$rm -fr "$fx"'';
+        "." = "set hidden!";
+        "`" = "mark-load";
+        "\\'" = "mark-load";
+        "<enter>" = "open";
+        do = "dragon-out";
+        "g~" = "cd";
+        gh = "cd";
+        "g/" = "/";
+        ee = "editor-open";
+        V = ''''$${pkgs.bat}/bin/bat --paging=always --theme=gruvbox "$f"'';
+      };
+      settings = {
+        preview = true;
+        hidden = true;
+        drawbox = true;
+        icons = true;
+        ignorecase = true;
+      };
+      extraConfig = let
+        previewer = pkgs.writeShellScriptBin "pv.sh" ''
+          file=$1
+          w=$2
+          h=$3
+          x=$4
+          y=$5
+
+          if [[ "$( ${pkgs.file}/bin/file -Lb --mime-type "$file")" =~ ^image ]]; then
+            # ${pkgs.kitty}/bin/kitty +kitten icat --silent --stdin no --transfer-mode file --place "''${w}x''${h}@''${x}x''${y}" "$file" < /dev/null > /dev/tty
+            exit 1
+          fi
+
+          ${pkgs.pistol}/bin/pistol "$file"
+        '';
+        cleaner = pkgs.writeShellScriptBin "clean.sh" ''
+          # ${pkgs.kitty}/bin/kitty +kitten icat --clear --stdin no --silent --transfer-mode file < /dev/null > /dev/tty
+        '';
+      in ''
+        set cleaner ${cleaner}/bin/clean.sh
+        set previewer ${previewer}/bin/pv.sh
+      '';
+    };
+tmux = {
+      enable = true;
+      mouse = true;
+      prefix = "C-Space";
+      keyMode = "vi";
+      baseIndex = 1;
+      plugins = with pkgs.tmuxPlugins; [
+        vim-tmux-navigator
+        yank
+        {
+          plugin = tokyo-night-tmux;
+          extraConfig = ''
+# tokyo night tmux config
+set -g @tokyo-night-tmux_theme "night"
+set -g @tokyo-night-tmux_show_datetime 0
+set -g @tokyo-night-tmux_path_format relative
+set -g @tokyo-night-tmux_window_id_style digital
+set -g @tokyo-night-tmux_pane_id_style hide
+set -g @tokyo-night-tmux_show_git 0
+
+# Undercurl fixes (tokyonight.nvim)
+set -g default-terminal "${TERM}"
+set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm' # undercurl support
+set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m' # underscore colours - needs tmux 3.0
+          '';
+        }
+      ];
+      extraConfig = ''
+        set-option -sa terminal-overrides ",xterm*:Tc"
+        set-window-option -g pane-base-index 1
+        set-option -g renumber-windows on
+
+        # Use Alt-arrow keys without prefix key to switch panes
+        bind -n M-Left select-pane -L
+        bind -n M-Right select-pane -R
+        bind -n M-Up select-pane -U
+        bind -n M-Down select-pane -D
+
+        # Shift arrow to switch windows
+        bind -n S-Left  previous-window
+        bind -n S-Right next-window
+
+        # Shift Alt vim keys to switch windows
+        bind -n M-H previous-window
+        bind -n M-L next-window
+
+        bind-key -T copy-mode-vi v send-keys -X begin-selection
+        bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+        bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+
+        bind '_' split-window -v -c "#{pane_current_path}"
+        bind | split-window -h -c "#{pane_current_path}"
+        bind c new-window -c "#{pane_current_path}"
+      '';
+    };
+xdg.configFile."lf/icons".source = ./lf-icons;
+    };
+    programs.bat.enable = true;
   programs.eza.enable = true;
   programs.man.enable = true;
-  programs.nix-index.enableZshIntegration = true;
   home.packages = [
     pkgs.unstable.steam-run
     pkgs.delta
@@ -186,6 +308,7 @@
       glg = "git lg";
       serve = "python3 -m http.server";
       ytmp3 = "yt-dlp --ignore-errors --format bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail --embed-metadata --output '%(title)s.%(ext)s'";
+      pst = "${pst}/bin/pst";
     };
   };
 }

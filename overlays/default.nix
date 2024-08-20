@@ -12,9 +12,8 @@
     tmuxPlugins =
       prev.tmuxPlugins
       // {
-        tokyo-night-tmux = prev.callPackage ../pkgs/tmux-tokyo-night.nix {
+        tokyo-night-tmux = prev.callPackage ../pkgs/tokyo-night-tmux.nix {
           pkgs = prev;
-          lib = prev.lib;
         };
       };
     gnome-keyring = prev.gnome.gnome-keyring;

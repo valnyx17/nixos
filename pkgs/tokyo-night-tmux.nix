@@ -1,9 +1,6 @@
-# USED IN OVERLAY
-{
-  pkgs,
-  lib,
-}:
-pkgs.tmuxPlugins.mkTmuxPlugin {
+pkgs: let
+  lib = pkgs.lib;
+in pkgs.tmuxPlugins.mkTmuxPlugin {
   pluginName = "tokyo-night-tmux";
   version = "c3bc283cceeefaa7e5896878fe20711f466ab591";
   src = pkgs.fetchFromGitHub {
