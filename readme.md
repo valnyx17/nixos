@@ -15,11 +15,6 @@ to explore the flake output and it's functionalities, run:
 nix flake show github:devawaves/nixos
 ```
 
-to clone this repository to an existing nixos system, run:
-```sh
-nix run github:devawaves/nixos#clone
-```
-
 to get the disko.nix file, run:
 ```sh
 nix run github:devawaves/nixos#disko
