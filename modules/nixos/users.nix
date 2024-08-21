@@ -2,6 +2,8 @@
   users.users.dv = {
     uid = 1337;
     initialPassword = "iamsonaughty.";
+    home = "/dv";
+    createHome = true;
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
       (builtins.readFile ./id_user.pub)

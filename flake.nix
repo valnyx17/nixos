@@ -34,7 +34,33 @@
 		home-manager,
 		flake-utils,
 		...
-	} @ inputs: flake-utils.lib.eachDefaultSystem(system: let
+	} @ inputs: {
+			nixosConfigurations.waves = nixpkgs.lib.nixosSystem {
+				specialArgs = {
+                                        inherit (self) outputs;
+					inherit inputs flake-utils;
+				};
+				modules = [
+					inputs.disko.nixosModules.default
+					(import ./disko.nix {device="/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_with_Heatsink_1TB_S6WSNJ0T900943T";})
+					./waves.nix
+				];
+			};
+
+			overlays = import ./overlays {inherit inputs;};
+
+			homeConfigurations."dv@waves" = home-manager.lib.homeManagerConfiguration {
+				pkgs = import nixpkgs { system = "x86_64-linux"; };
+				extraSpecialArgs = {
+                                        inherit (self) outputs;
+					inherit inputs flake-utils;
+				};
+
+				modules = [
+					./modules/home/dv.nix
+				];
+			};
+} // flake-utils.lib.eachDefaultSystem(system: let
 		pkgs = nixpkgs.legacyPackages.${system};
 		inherit (self) outputs;
 	in {
@@ -49,25 +75,6 @@
 
 			formatter = pkgs.alejandra;
 
-			overlays = import ./overlays {inherit inputs;};
 
-			nixosConfigurations.waves = nixpkgs.lib.nixosSystem {
-				specialArgs = {
-					inherit inputs outputs flake-utils;
-				};
-				modules = [
-					inputs.disko.nixosModules.default
-					(import ./disko.nix {device="/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_with_Heatsink_1TB_S6WSNJ0T900943T";})
-					./waves.nix
-				];
-			};
-
-			homeConfigurations."dv@waves" = home-manager.lib.homeManagerConfiguration {
-				pkgs = import nixpkgs { system = system; };
-
-				modules = [
-					./modules/home/dv.nix
-				];
-			};
 		});
 }

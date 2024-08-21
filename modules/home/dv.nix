@@ -1,4 +1,4 @@
-{pkgs, lib, config, inputs, ...}: {
+{pkgs, lib, config, inputs, outputs, ...}: {
     imports = [
         ./services.nix
         ./programs.nix
@@ -10,9 +10,32 @@
         ./gui.nix
     ];
 
+	nix = {
+	  #package = pkgs.nix;
+	  registry.nixpkgs.flake = inputs.nixpkgs;
+	  gc.automatic = true;
+    settings = {
+      # Enable flakes and new 'nix' command
+      experimental-features = "nix-command flakes";
+      # Opinionated: disable global registry
+      flake-registry = "";
+      # Workaround for https://github.com/NixOS/nix/issues/9574
+      #allowUnfree = true;
+    };
+	};
+
+	nixpkgs.config = {
+		allowUnfree = true;
+		cudaSupport = true;
+	};
+	nixpkgs.overlays = [
+	  outputs.overlays.additions
+	  outputs.overlays.modifications
+	  outputs.overlays.unstable-packages
+	];
     home = {
         file.".ssh/id_user.pub".text = builtins.readFile ../nixos/id_user.pub;
-        username = config.users.users.dv.name;
+        username = "dv";
         homeDirectory = "/dv";
         extraOutputsToInstall = ["doc" "devdoc"];
         packages = [
@@ -30,7 +53,7 @@
             NIX_AUTO_RUN = "1";
             FLAKE = "/dv/nixos";
         };
-        # stateVersion = ""; <- figure out when installing WARNING:
+        stateVersion = "24.11";
     };
         nix.package = lib.mkForce pkgs.unstable.nixVersions.latest;
         nix.extraOptions = ''
@@ -43,8 +66,8 @@
         };
         programs.home-manager.enable = true;
         programs.git.enable = true;
-        programs.nix-index.enable = true;
-        programs.nix-index.symlinkToCacheHome = true;
-        programs.nix-index-database.comma.enable = true;
+        #programs.nix-index.enable = true;
+        #programs.nix-index.symlinkToCacheHome = true;
+        #programs.nix-index-database.comma.enable = true;
         systemd.user.startServices = "sd-switch";
 }

@@ -5,28 +5,27 @@ pkgs,
 outputs,
 inputs,
 ...
-}: let
-  modulesPath = "./modules/nixos";
-in  {
+}:
+{
 	imports = [
 		./waves-hardware.nix
 		inputs.nix-gaming.nixosModules.pipewireLowLatency
-		"${modulesPath}/virtualisation.nix"
-		"${modulesPath}/kanata.nix"
-		"${modulesPath}/services.nix"
-		"${modulesPath}/localnameresolution.nix"
-		"${modulesPath}/syncthing.nix"
-		"${modulesPath}/users.nix"
-		"${modulesPath}/adb.nix"
-		"${modulesPath}/console.nix"
-		"${modulesPath}/fonts.nix"
-		"${modulesPath}/nvidia.nix"
-		"${modulesPath}/gui.nix"
-		"${modulesPath}/i18n.nix"
-		"${modulesPath}/zsh.nix"
+		./modules/nixos/virtualisation.nix
+		./modules/nixos/kanata.nix
+		./modules/nixos/services.nix
+		./modules/nixos/localnameresolution.nix
+		./modules/nixos/syncthing.nix
+		./modules/nixos/users.nix
+		./modules/nixos/adb.nix
+		./modules/nixos/console.nix
+		./modules/nixos/fonts.nix
+		./modules/nixos/nvidia.nix
+		./modules/nixos/gui.nix
+		./modules/nixos/i18n.nix
+		./modules/nixos/zsh.nix
 	];
 
-	#system.stateVersion = ""; #<- replace when have stateversion
+	system.stateVersion = "24.05";
 
 	nixpkgs.config = {
 		allowUnfree = true;
