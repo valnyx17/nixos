@@ -23,6 +23,7 @@ inputs,
 		./modules/nixos/gui.nix
 		./modules/nixos/i18n.nix
 		./modules/nixos/zsh.nix
+		./modules/nixos/nix-ld.nix
 	];
 
 	system.stateVersion = "24.05";
