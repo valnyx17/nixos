@@ -7,7 +7,8 @@
         # terminal
         ./term
         # gui
-        ./gui.nix
+        ./gui-core.nix
+        ./niri.nix
     ];
 
 	nix = {
