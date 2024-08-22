@@ -17,6 +17,7 @@
     unstable.corepack
     unstable.cargo-watch
     unstable.rustup
+    unstable.gcc
     unstable.go
     unstable.jetbrains.idea-community
     unstable.cascadia-code
