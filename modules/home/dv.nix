@@ -34,6 +34,7 @@
 	  outputs.overlays.additions
 	  outputs.overlays.modifications
 	  outputs.overlays.unstable-packages
+            inputs.niri.overlays.niri
 	];
     home = {
         file.".ssh/id_user.pub".text = builtins.readFile ../nixos/id_user.pub;

@@ -1,16 +1,10 @@
 {pkgs, ...}: {
-home.packages = [
-    pkgs.noto-fonts
-    pkgs.noto-fonts-emoji
-
-    pkgs.material-design-icons
-    (pkgs.google-fonts.override {fonts = ["Overpass" "Nunito"];})
-    (pkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+  home.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-emoji
+    material-design-icons
+    cozette
+    (google-fonts.override {fonts = ["Overpass" "Nunito"];})
+    (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
   ];
-    xsession.windowManager.bspwm = {
-        enable = true;
-        startupPrograms = [
-            "wezterm"
-        ];
-    };
 }

@@ -49,7 +49,6 @@
 				modules = [
 					inputs.disko.nixosModules.default
 					(import ./disko.nix {device="/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_with_Heatsink_1TB_S6WSNJ0T900943T";})
-					inputs.niri.nixosModules.niri
 					./waves.nix
 				];
 			};
