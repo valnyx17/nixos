@@ -10,64 +10,45 @@ wezterm = {
       enable = true;
       extraConfig = builtins.readFile ./wezterm.lua;
     };
-    lf = {
+    broot = {
       enable = true;
-      commands = {
-        dragon-out = ''%${pkgs.xdragon}/bin/xdragon -a -x "$fx"'';
-        editor-open = ''$$EDITOR $f'';
-        mkdir = ''
-          ''${{
-            printf "Directory Name: "
-            read DIR
-            mkdir $DIR
-          }}
-        '';
+      enableZshIntegration = true;
+      settings = {
+        default_flags = "-gh";
+        show_matching_characters_on_path_searches = false;
+        modal = true;
       };
-      keybindings = {
-        "\\\"" = "";
-        o = "";
-        c = "mkdir";
-        D = ''$rm -fr "$fx"'';
-        "." = "set hidden!";
-        "`" = "mark-load";
-        "\\'" = "mark-load";
-        "<enter>" = "open";
-        do = "dragon-out";
-        "g~" = "cd";
-        gh = "cd";
-        "g/" = "/";
-        ee = "editor-open";
-        V = ''''$${pkgs.bat}/bin/bat --paging=always --theme=gruvbox "$f"'';
+    };
+    yazi = {
+      enable = true;
+      enableZshIntegration = true;
+      flavors = {
+        tokyo-night = pkgs.fetchFromGitHub {
+          owner = "BennyOe";
+          repo = "tokyo-night.yazi";
+          rev = "024fb096821e7d2f9d09a338f088918d8cfadf34";
+          hash = "sha256-IhCwP5v0qbuanjfMRbk/Uatu31rPNVChJn5Y9c5KWYQ=";
+        };
       };
       settings = {
-        preview = true;
-        hidden = true;
-        drawbox = true;
-        icons = true;
-        ignorecase = true;
+        manager = {
+          show_hidden = true;
+          show_dir_first = true;
+          show_symlink = true;
+        };
+        flavor.use = "tokyo-night";
+        opener = {
+          edit = [
+            { run = ''nvim "$@"''; block = true; for = "unix";}
+          ];
+          play = [
+            { run = ''mpv "$@"''; orphan = true; for = "unix";}
+          ];
+          open = [
+            { run = ''xdg-open "$@"''; desc = "Open";}
+          ];
+        };
       };
-      extraConfig = let
-        previewer = pkgs.writeShellScriptBin "pv.sh" ''
-          file=$1
-          w=$2
-          h=$3
-          x=$4
-          y=$5
-
-          if [[ "$( ${pkgs.file}/bin/file -Lb --mime-type "$file")" =~ ^image ]]; then
-            # ${pkgs.kitty}/bin/kitty +kitten icat --silent --stdin no --transfer-mode file --place "''${w}x''${h}@''${x}x''${y}" "$file" < /dev/null > /dev/tty
-            exit 1
-          fi
-
-          ${pkgs.pistol}/bin/pistol "$file"
-        '';
-        cleaner = pkgs.writeShellScriptBin "clean.sh" ''
-          # ${pkgs.kitty}/bin/kitty +kitten icat --clear --stdin no --silent --transfer-mode file < /dev/null > /dev/tty
-        '';
-      in ''
-        set cleaner ${cleaner}/bin/clean.sh
-        set previewer ${previewer}/bin/pv.sh
-      '';
     };
 tmux = {
       enable = true;
@@ -129,10 +110,26 @@ xdg.configFile."lf/icons".source = ./lf-icons;
     programs.bat.enable = true;
   programs.eza.enable = true;
   programs.man.enable = true;
-  home.packages = [
-    pkgs.unstable.steam-run
-    pkgs.delta
-    pkgs.bottom
+  home.packages = with pkgs; [
+    ouch
+    unstable.curlie
+    unstable.gping
+    unstable.ov
+    unstable.tailspin
+    unstable.viddy
+    netscanner
+    atuin
+    kalker
+    unstable.steam-run
+    fd
+    ripgrep
+    await
+    procs
+    duf
+    dust
+    nurl
+    delta
+    bottom
   ];
 
   programs.wezterm.enableZshIntegration = true;
@@ -194,6 +191,7 @@ xdg.configFile."lf/icons".source = ./lf-icons;
       zinit light Aloxaf/fzf-tab
       zinit light zsh-users/zsh-syntax-highlighting
       zinit light zsh-users/zsh-autosuggestions
+      zinit light atuinsh/atuin
 
       # snippets
       zinit snippet OMZP::git
@@ -292,7 +290,14 @@ xdg.configFile."lf/icons".source = ./lf-icons;
       free = "free -m";
       j = "just";
       ed = "code";
-      n = "nvim";
+      nv = "nvim";
+      cdi = "broot";
+      bd = "popd || cd ..";
+      lf = "yazi";
+      lazygit = "gitui";
+      ps = "procs";
+      du = "dust";
+      df=  "duf";
       cdr = "cd \$(git rev-parse --show-toplevel)";
       l = "eza -al --no-time --group-directories-first";
       ls = "eza -al --no-time --group-directories-first";

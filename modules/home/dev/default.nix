@@ -23,6 +23,10 @@
     unstable.cascadia-code
     unstable.jdk17
     unstable.ncdu
-    unstable.httpie
+        unstable.gh-dash
+        unstable.hurl
+        unstable.jnv
+        unstable.rustscan
+        unstable.slides
     ];
 }
