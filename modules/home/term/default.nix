@@ -1,12 +1,19 @@
 {
-    config,
-    pkgs,
-    ...
+  config,
+  pkgs,
+  ...
 }: let
   pst = pkgs.writeShellScriptBin "pst" (builtins.readFile ./pst);
 in {
-    programs = {
-wezterm = {
+  xdg.configFile."wezterm/colors/camellia-hope-dark.toml".text = builtins.readFile (pkgs.fetchFromGitHub {
+      owner = "camellia-theme";
+      repo = "camellia";
+      rev = "3b319bb337caccc311e60c3a8d357c4431b63680";
+      hash = "sha256-HNdGHJ8n81HpVK9gFiRLZBBh0sz4FIUUx/ykGyoxv0c=";
+    }
+    + "/ports/wezterm/colors/camelliaHopeDark.toml");
+  programs = {
+    wezterm = {
       enable = true;
       extraConfig = builtins.readFile ./wezterm.lua;
     };
@@ -39,18 +46,29 @@ wezterm = {
         flavor.use = "tokyo-night";
         opener = {
           edit = [
-            { run = ''nvim "$@"''; block = true; for = "unix";}
+            {
+              run = ''nvim "$@"'';
+              block = true;
+              for = "unix";
+            }
           ];
           play = [
-            { run = ''mpv "$@"''; orphan = true; for = "unix";}
+            {
+              run = ''mpv "$@"'';
+              orphan = true;
+              for = "unix";
+            }
           ];
           open = [
-            { run = ''xdg-open "$@"''; desc = "Open";}
+            {
+              run = ''xdg-open "$@"'';
+              desc = "Open";
+            }
           ];
         };
       };
     };
-tmux = {
+    tmux = {
       enable = true;
       mouse = true;
       prefix = "C-Space";
@@ -59,23 +77,23 @@ tmux = {
       plugins = with pkgs.tmuxPlugins; [
         vim-tmux-navigator
         yank
-#        {
-#          plugin = tokyo-night-tmux;
-#          extraConfig = ''
-## tokyo night tmux config
-#set -g @tokyo-night-tmux_theme "night"
-#set -g @tokyo-night-tmux_show_datetime 0
-#set -g @tokyo-night-tmux_path_format relative
-#set -g @tokyo-night-tmux_window_id_style digital
-#set -g @tokyo-night-tmux_pane_id_style hide
-#set -g @tokyo-night-tmux_show_git 0
-#
-## Undercurl fixes (tokyonight.nvim)
-#set -g default-terminal "${TERM}"
-#set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm' # undercurl support
-#set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m' # underscore colours - needs tmux 3.0
-#          '';
-#        }
+        #        {
+        #          plugin = tokyo-night-tmux;
+        #          extraConfig = ''
+        ## tokyo night tmux config
+        #set -g @tokyo-night-tmux_theme "night"
+        #set -g @tokyo-night-tmux_show_datetime 0
+        #set -g @tokyo-night-tmux_path_format relative
+        #set -g @tokyo-night-tmux_window_id_style digital
+        #set -g @tokyo-night-tmux_pane_id_style hide
+        #set -g @tokyo-night-tmux_show_git 0
+        #
+        ## Undercurl fixes (tokyonight.nvim)
+        #set -g default-terminal "${TERM}"
+        #set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm' # undercurl support
+        #set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m' # underscore colours - needs tmux 3.0
+        #          '';
+        #        }
       ];
       extraConfig = ''
         set-option -sa terminal-overrides ",xterm*:Tc"
@@ -103,11 +121,13 @@ tmux = {
         bind '_' split-window -v -c "#{pane_current_path}"
         bind | split-window -h -c "#{pane_current_path}"
         bind c new-window -c "#{pane_current_path}"
+
+        run '~/.tmux/plugins/tpm/tpm'
       '';
     };
-    };
-xdg.configFile."lf/icons".source = ./lf-icons;
-    programs.bat.enable = true;
+  };
+  xdg.configFile."lf/icons".source = ./lf-icons;
+  programs.bat.enable = true;
   programs.eza.enable = true;
   programs.man.enable = true;
   home.packages = with pkgs; [
@@ -297,7 +317,7 @@ xdg.configFile."lf/icons".source = ./lf-icons;
       lazygit = "gitui";
       ps = "procs";
       du = "dust";
-      df=  "duf";
+      df = "duf";
       cdr = "cd \$(git rev-parse --show-toplevel)";
       l = "eza -al --no-time --group-directories-first";
       ls = "eza -al --no-time --group-directories-first";

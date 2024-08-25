@@ -107,6 +107,10 @@
         {
           "Mod+T".action = spawn "wezterm";
           "Mod+D".action = spawn "fuzzel";
+          "Mod+J".action = focus-window-or-workspace-down;
+          "Mod+K".action = focus-window-or-workspace-up;
+          "Mod+Ctrl+J".action = move-window-down-or-to-workspace-down;
+          "Mod+Ctrl+K".action = move-window-up-or-to-workspace-up;
         }
       ];
   };

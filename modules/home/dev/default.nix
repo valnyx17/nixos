@@ -9,7 +9,7 @@
     unstable.bruno
     unstable.xclip
     unstable.just
-    unstable.nil
+    unstable.nixd
     unstable.alejandra
     unstable.zoxide
     unstable.neovide

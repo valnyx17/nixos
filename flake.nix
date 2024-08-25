@@ -1,88 +1,91 @@
 {
-	description = "nixos system configuration";
-	
-	inputs = {
-		nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-		nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-		flake-utils.url = "github:numtide/flake-utils";
+  description = "nixos system configuration";
 
-		home-manager = {
-			url = "github:nix-community/home-manager";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
 
-		disko = {
-			url = "github:nix-community/disko";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-		nh = {
-			url = "github:viperML/nh";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-		nix-gaming = {
-			url = "github:fufexan/nix-gaming";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
+    nh = {
+      url = "github:viperML/nh";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-		niri = {
-			url = "github:sodiboo/niri-flake";
-		};
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-		ags.url = "github:Aylur/ags";
-	};
+    niri = {
+      url = "github:sodiboo/niri-flake";
+    };
 
-	outputs = {
-		self,
-		nixpkgs,
-		nixpkgs-unstable,
-		home-manager,
-		flake-utils,
-		...
-	} @ inputs: {
-			nixosConfigurations.waves = nixpkgs.lib.nixosSystem {
-				specialArgs = {
-                                        inherit (self) outputs;
-					inherit inputs flake-utils;
-				};
-				modules = [
-					inputs.disko.nixosModules.default
-					(import ./disko.nix {device="/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_with_Heatsink_1TB_S6WSNJ0T900943T";})
-					./waves.nix
-				];
-			};
+    ags.url = "github:Aylur/ags";
 
-			overlays = import ./overlays {inherit inputs;};
+    stylix.url = "github:danth/stylix";
+  };
 
-			homeConfigurations."dv@waves" = home-manager.lib.homeManagerConfiguration {
-				pkgs = import nixpkgs { system = "x86_64-linux"; };
-				extraSpecialArgs = {
-                                        inherit (self) outputs;
-					inherit inputs flake-utils;
-				};
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgs-unstable,
+    home-manager,
+    flake-utils,
+    ...
+  } @ inputs:
+    {
+      nixosConfigurations.waves = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit (self) outputs;
+          inherit inputs flake-utils;
+        };
+        modules = [
+          inputs.disko.nixosModules.default
+          (import ./disko.nix {device = "/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_with_Heatsink_1TB_S6WSNJ0T900943T";})
+          ./waves.nix
+        ];
+      };
 
-				modules = [
-					inputs.niri.homeModules.niri
-					# inputs.niri.homeModules.config
-					./modules/home/dv.nix
-				];
-			};
-} // flake-utils.lib.eachDefaultSystem(system: let
-		pkgs = nixpkgs.legacyPackages.${system};
-		inherit (self) outputs;
-	in {
-			packages = (import ./pkgs pkgs);
+      overlays = import ./overlays {inherit inputs;};
 
-			apps = {
-				"disko" = {
-					type = "app";
-					program = "${self.outputs.packages.${system}.disko}/bin/disko";
-				};
-			};
+      homeConfigurations."dv@waves" = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {system = "x86_64-linux";};
+        extraSpecialArgs = {
+          inherit (self) outputs;
+          inherit inputs flake-utils;
+        };
 
-			formatter = pkgs.alejandra;
+        modules = [
+          inputs.niri.homeModules.niri
+          inputs.stylix.homeManagerModules.stylix
+          # inputs.niri.homeModules.config
+          ./modules/home/dv.nix
+        ];
+      };
+    }
+    // flake-utils.lib.eachDefaultSystem (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+      inherit (self) outputs;
+    in {
+      packages = import ./pkgs pkgs;
 
+      apps = {
+        "disko" = {
+          type = "app";
+          program = "${self.outputs.packages.${system}.disko}/bin/disko";
+        };
+      };
 
-		});
+      formatter = pkgs.alejandra;
+    });
 }
