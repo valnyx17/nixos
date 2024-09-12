@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   # Enable nix ld
   programs.nix-ld.enable = true;
 
@@ -8,6 +7,7 @@
     at-spi2-atk
     at-spi2-core
     atk
+    readline
     cairo
     cups
     curl
@@ -55,6 +55,8 @@
     xorg.libxcb
     xorg.libxkbfile
     xorg.libxshmfence
+    fzf
     zlib
+    libgit2
   ];
 }

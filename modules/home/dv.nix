@@ -17,7 +17,7 @@
     # gui
     ./gui-core.nix
     ./ags.nix
-    ./niri.nix
+    # ./niri.nix
   ];
 
   nix = {

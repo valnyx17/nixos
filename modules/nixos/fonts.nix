@@ -6,7 +6,7 @@
       antialias = true;
       defaultFonts = {
         emoji = ["Noto Color Emoji"];
-        monospace = ["Rec Mono Waves" "Symbols Nerd Font" "Noto Color Emoji"];
+        monospace = ["JuliaMono" "Symbols Nerd Font" "Noto Color Emoji"];
         serif = ["Noto Serif" "Noto Color Emoji"];
         sansSerif = ["Overpass" "Nunito" "Noto Color Emoji"];
       };
@@ -30,7 +30,7 @@
 
       pkgs.material-design-icons
       (pkgs.google-fonts.override {fonts = ["Overpass" "Nunito"];})
-      (pkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+      (pkgs.unstable.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     ];
   };
 }

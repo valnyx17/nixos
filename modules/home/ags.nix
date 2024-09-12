@@ -1,13 +1,20 @@
-{inputs, pkgs, ...}: {
-    imports = [inputs.ags.homeManagerModules.default];
-    programs.ags = {
-        enable = true;
+{
+  inputs,
+  pkgs,
+  ...
+}: {
+  imports = [inputs.ags.homeManagerModules.default];
+  home.packages = with pkgs; [
+    sassc
+  ];
+  programs.ags = {
+    enable = true;
 
-        # additional packages to add to gjs's runtime
-        extraPackages = with pkgs; [
-            gtksourceview
-            webkitgtk
-            accountsservice
-        ];
-    };
+    # additional packages to add to gjs's runtime
+    extraPackages = with pkgs; [
+      gtksourceview
+      webkitgtk
+      accountsservice
+    ];
+  };
 }

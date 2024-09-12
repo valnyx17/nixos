@@ -138,7 +138,6 @@ in {
     unstable.tailspin
     unstable.viddy
     netscanner
-    atuin
     kalker
     unstable.steam-run
     fd
@@ -211,7 +210,6 @@ in {
       zinit light Aloxaf/fzf-tab
       zinit light zsh-users/zsh-syntax-highlighting
       zinit light zsh-users/zsh-autosuggestions
-      zinit light atuinsh/atuin
 
       # snippets
       zinit snippet OMZP::git

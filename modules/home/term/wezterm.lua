@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
-config.color_scheme = "camellia-hope-dark"
+config.color_scheme = "Catppuccin Macchiato"
 config.use_fancy_tab_bar = false
 config.window_decorations = "RESIZE"
 config.hide_tab_bar_if_only_one_tab = true
@@ -14,9 +14,9 @@ config.font = wezterm.font_with_fallback({
 	-- { family = "Rec Mono Waves", weight = "Regular" },
 	{ family = "JuliaMono", weight = "Regular" },
 	-- "CozetteHiDpi",
-	"Symbols Nerd Font Mono",
+	"Symbols Nerd Font",
 })
-config.font_size = 10
+config.font_size = 14
 -- config.cell_width = 0.88
 
 config.set_environment_variables = {
@@ -33,5 +33,25 @@ config.window_padding = {
 }
 
 config.default_cursor_style = "SteadyBar"
+
+-- wayland support
+config.enable_wayland = false
+
+config.unix_domains = {
+	{
+		name = "unix",
+	},
+}
+config.freetype_load_flags = "DEFAULT"
+config.window_background_opacity = 0.95
+config.max_fps = 144
+config.scrollback_lines = 10000
+
+-- This causes `wezterm` to act as though it was started as
+-- `wezterm connect unix` by default, connecting to the unix
+-- domain on startup.
+-- If you prefer to connect manually, leave out this line.
+-- config.default_gui_startup_args = { "connect", "unix" }
+config.ssh_domains = wezterm.default_ssh_domains()
 
 return config
