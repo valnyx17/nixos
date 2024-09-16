@@ -28,10 +28,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
@@ -39,7 +35,6 @@
     nixpkgs,
     home-manager,
     flake-utils,
-    nixos-cosmic,
     ...
   } @ inputs: let
     mkApp = flake-utils.lib.mkApp;
@@ -56,15 +51,7 @@
 
       # host defaults
       hostDefaults.system = "x86_64-linux";
-      hostDefaults.modules = [
-        {
-          nix.settings = {
-            substituters = ["https://cosmic.cachix.org/"];
-            trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="];
-          };
-        }
-        nixos-cosmic.nixosModules.default
-      ];
+      hostDefaults.modules = [];
       hostDefaults.extraArgs = {inherit flake-utils;};
       hostDefaults.specialArgs = {
         inherit inputs;
