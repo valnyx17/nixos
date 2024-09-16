@@ -1,4 +1,5 @@
-pkgs: pkgs.writeShellScriptBin "disko" ''
+pkgs:
+pkgs.writeShellScriptBin "disko" ''
   cat >disko.nix <<EOL
   ${builtins.readFile ../disko.nix}
   EOL
@@ -12,3 +13,4 @@ pkgs: pkgs.writeShellScriptBin "disko" ''
 #     EOL
 #   '';
 # }
+

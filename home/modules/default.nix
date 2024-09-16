@@ -1,0 +1,6 @@
+[
+  ./core
+  ./gui
+  ./term
+  ./dev
+]

@@ -19,3 +19,5 @@ to get the disko.nix file, run:
 ```sh
 nix run github:devawaves/nixos#disko
 ```
+
+*more utilities can be found in [usage.md](./usage.md)*

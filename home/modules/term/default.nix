@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  pst = pkgs.writeShellScriptBin "pst" (builtins.readFile ./pst);
+  pst = pkgs.writeShellScriptBin "pst" (builtins.readFile ../../dotfiles/pst);
 in {
   xdg.configFile."wezterm/colors/camellia-hope-dark.toml".text = builtins.readFile (pkgs.fetchFromGitHub {
       owner = "camellia-theme";
@@ -15,7 +15,7 @@ in {
   programs = {
     wezterm = {
       enable = true;
-      extraConfig = builtins.readFile ./wezterm.lua;
+      extraConfig = builtins.readFile ../../dotfiles/wezterm.lua;
     };
     broot = {
       enable = true;
@@ -126,7 +126,7 @@ in {
       '';
     };
   };
-  xdg.configFile."lf/icons".source = ./lf-icons;
+  xdg.configFile."lf/icons".source = ../../dotfiles/lf-icons;
   programs.bat.enable = true;
   programs.eza.enable = true;
   programs.man.enable = true;
@@ -270,14 +270,14 @@ in {
       bindkey -M viins '^[^[' sudo-command-line
 
       # prompt init
-      eval "$(${pkgs.oh-my-posh}/bin/oh-my-posh init zsh --config ${./prompt.json})"
+      eval "$(${pkgs.oh-my-posh}/bin/oh-my-posh init zsh --config ${../../dotfiles/prompt.json})"
     '';
     dirHashes = {
       dl = "${config.home.homeDirectory}/Downloads";
       docs = "${config.home.homeDirectory}/Documents";
       src = "${config.home.homeDirectory}/src";
-      dots = "${config.home.homeDirectory}/nix";
-      nix = "${config.home.homeDirectory}/nix";
+      dots = "${config.home.homeDirectory}/nixos";
+      nix = "${config.home.homeDirectory}/nixos";
       pics = "${config.home.homeDirectory}/Pictures";
       vids = "${config.home.homeDirectory}/Videos";
     };
@@ -309,6 +309,8 @@ in {
       j = "just";
       ed = "code";
       nv = "nvim";
+      sv = "sudo nvim";
+      meteo = "curl http://wttr.in";
       cdi = "broot";
       bd = "popd || cd ..";
       lf = "yazi";

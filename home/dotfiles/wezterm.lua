@@ -11,25 +11,25 @@ config.hide_tab_bar_if_only_one_tab = true
 -- 	weight = "Regular",
 -- })
 config.font = wezterm.font_with_fallback({
-	-- { family = "Rec Mono Waves", weight = "Regular" },
-	{ family = "JuliaMono", weight = "Regular" },
-	-- "CozetteHiDpi",
-	"Symbols Nerd Font",
+  -- { family = "Rec Mono Waves", weight = "Regular" },
+  { family = "Monaspace Neon", weight = "Regular" },
+  -- "CozetteHiDpi",
+  "Symbols Nerd Font",
 })
-config.font_size = 14
--- config.cell_width = 0.88
+config.font_size = 12
+config.cell_width = 0.95
 
 config.set_environment_variables = {
-	TERM = "xterm-256color",
-	EDITOR = "nvim",
-	VISUAL = "nvim",
+  TERM = "xterm-256color",
+  EDITOR = "nvim",
+  VISUAL = "nvim",
 }
 
 config.window_padding = {
-	left = 7,
-	right = 7,
-	top = 0,
-	bottom = 0,
+  left = 7,
+  right = 7,
+  top = 0,
+  bottom = 0,
 }
 
 config.default_cursor_style = "SteadyBar"
@@ -38,12 +38,12 @@ config.default_cursor_style = "SteadyBar"
 config.enable_wayland = false
 
 config.unix_domains = {
-	{
-		name = "unix",
-	},
+  {
+    name = "unix",
+  },
 }
 config.freetype_load_flags = "DEFAULT"
-config.window_background_opacity = 0.95
+config.window_background_opacity = 1.00
 config.max_fps = 144
 config.scrollback_lines = 10000
 
