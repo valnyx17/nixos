@@ -77,6 +77,37 @@ in {
       plugins = with pkgs.tmuxPlugins; [
         vim-tmux-navigator
         yank
+        resurrect
+        {
+          plugin = continuum;
+          extraConfig = ''
+            set -g @continuum-restore 'on'
+          '';
+        }
+        {
+          plugin = catppuccin;
+          extraConfig = ''
+            set -g status-position top
+            set -g @catppuccin_flavor 'macchiato'
+
+            set -g @catppuccin_window_left_separator "█"
+            set -g @catppuccin_window_right_separator "█ "
+            set -g @catppuccin_window_number_position "right"
+            set -g @catppuccin_window_middle_separator "  █"
+
+            set -g @catppuccin_window_default_fill "number"
+            set -g @catppuccin_window_default_text "#W"
+
+            set -g @catppuccin_window_current_fill "number"
+            set -g @catppuccin_window_current_text "#W"
+
+            set -g @catppuccin_status_modules_right "user host session"
+            set -g @catppuccin_status_left_separator  ""
+            set -g @catppuccin_status_right_separator " "
+            set -g @catppuccin_status_fill "all"
+            set -g @catppuccin_status_connect_separator "yes"
+          '';
+        }
         #        {
         #          plugin = tokyo-night-tmux;
         #          extraConfig = ''
@@ -99,6 +130,7 @@ in {
         set-option -sa terminal-overrides ",xterm*:Tc"
         set-window-option -g pane-base-index 1
         set-option -g renumber-windows on
+        set -sg escape-time 0
 
         # Use Alt-arrow keys without prefix key to switch panes
         bind -n M-Left select-pane -L
