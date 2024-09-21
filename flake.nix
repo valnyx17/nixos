@@ -28,6 +28,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    st.url = "github:devawaves/st";
   };
 
   outputs = {

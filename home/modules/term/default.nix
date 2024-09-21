@@ -12,6 +12,7 @@ in {
       hash = "sha256-HNdGHJ8n81HpVK9gFiRLZBBh0sz4FIUUx/ykGyoxv0c=";
     }
     + "/ports/wezterm/colors/camelliaHopeDark.toml");
+  xdg.configFile."wezterm/colors/chadtain.toml".text = builtins.readFile ../../dotfiles/chadtain.toml;
   programs = {
     wezterm = {
       enable = true;

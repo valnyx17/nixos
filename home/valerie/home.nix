@@ -21,6 +21,7 @@ in {
       packages =
         [
           inputs.nh.packages.x86_64-linux.default
+          inputs.st.packages.x86_64-linux.st-snazzy
         ]
         ++ (with pkgs; [
           nom
