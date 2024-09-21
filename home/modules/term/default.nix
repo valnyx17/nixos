@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: let
   pst = pkgs.writeShellScriptBin "pst" (builtins.readFile ../../dotfiles/pst);
@@ -165,6 +166,7 @@ in {
   programs.man.enable = true;
   home.packages = with pkgs; [
     ouch
+    tmuxifier
     unstable.curlie
     unstable.gping
     unstable.ov
@@ -324,6 +326,8 @@ in {
       # FLAKE = "$HOME/sysconf/nix";
     };
     shellAliases = {
+      tm = "tmuxifier";
+      t = "tmux";
       run = "nix-shell --command 'zsh' -p";
       fhs = "steam-run";
       nsh = "nix-shell --command 'zsh'";
