@@ -5,63 +5,75 @@
       "alignment": "left",
       "segments": [
         {
-          "foreground": "#525252",
+          "foreground": "#dde1e6",
+          "foreground_templates": [
+            "{{if gt .Code 0}}#BF616A{{end}}"
+          ],
           "style": "plain",
-          "template": "\u25b3 ",
+          "template": "<b>\uf10c</b>",
           "type": "text"
         },
         {
           "foreground": "#dde1e6",
           "properties": {
             "folder_separator_icon": " / ",
-            "home_icon": "home",
-            "style": "agnoster_full"
+            "home_icon": "~",
+            "style": "folder"
           },
           "style": "plain",
-          "template": "{{.Path}} ",
+          "template": " {{.Path}} ",
           "type": "path"
         },
         {
           "foreground": "#dde1e6",
           "properties": {
             "branch_icon": "",
-            "branch_ahead_icon": "\u21e1 ",
-            "branch_behind_icon": "\u21e3 ",
+            "branch_ahead_icon": "\u21e1",
+            "branch_behind_icon": "\u21e3",
             "fetch_stash_count": true,
             "fetch_status": true,
             "fetch_upstream_icon": true,
             "github_icon": ""
           },
           "style": "plain",
-          "template": "<#525252>git:(</>{{.HEAD}}<#525252>, </>{{if .BranchStatus }}{{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}<#dde1e6>*</>{{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }}<#525252>)</> ",
+          "template": "<#525252>git:(</>{{.HEAD}}{{if .BranchStatus }}{{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}<#dde1e6>*</>{{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }}|{{ end }}{{ if .Staging.Changed }}+{{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}${{ .StashCount }}{{ end }}<#525252>)</> ",
           "type": "git"
         },
         {
           "foreground": "#fff",
           "foreground_templates": [
-            "{{if gt .Code 0 }}#BF616A{{ end }}",
-            "{{if contains .Env.IN_NIX_SHELL \"pure\"}}#81A1C1{{end}}"
+            "{{if contains .Env.IN_NIX_SHELL \"pure\"}}#81A1C1{{end}}",
+            "{{if contains .Env.IN_NIX_SHELL \"impure\"}}#81A1C1{{end}}"
           ],
           "style": "plain",
-          "template": "<b>λ</b> ",
+          "template": "<b>{{if .Root}}#{{else}}λ{{end}}</b> ",
           "type": "text"
         }
       ],
       "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "executiontime",
+          "template": "<#eed49f>{{ .FormattedMs }}</> <#525252>|</>"
+        }
+      ],
+      "type": "rprompt"
     }
   ],
-  "console_title_template": "{{if .Root}}(root){{end}} {{.PWD}}",
+  "console_title_template": "{{if .Root}}(Admin){{end}} {{.PWD}}",
   "transient_prompt": {
     "foreground": "#fff",
     "foreground_templates": [
-      "{{if gt .Code 0 }}#BF616A{{ end }}",
-      "{{if contains .Env.IN_NIX_SHELL \"pure\"}}#81A1C1{{end}}"
+      "{{if gt .Code 0 }}#BF616A{{ end }}"
     ],
-    "template": "<b>λ</b> "
+    "template": "<b>\uf10c</b> "
   },
   "secondary_prompt": {
     "foreground": "#525252",
-    "template": "\u25b3 "
+    "template": "\u25b2 "
   },
   "version": 2
 }
