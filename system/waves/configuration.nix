@@ -129,7 +129,7 @@
     settings = {
       KbdInteractiveAuthentication = false;
       PermitRootLogin = "no";
-      PasswordAuthentication = false;
+      PasswordAuthentication = true;
       UseDns = true;
       X11Forwarding = false;
     };
@@ -216,9 +216,9 @@
       antialias = true;
       defaultFonts = {
         emoji = ["Noto Color Emoji"];
-        monospace = ["Monaspace Neon" "JuliaMono" "Symbols Nerd Font" "Noto Color Emoji"];
-        serif = ["Noto Serif" "Noto Color Emoji"];
-        sansSerif = ["Overpass" "Nunito" "Noto Color Emoji"];
+        monospace = ["Jetbrains Mono" "Monaspace Neon" "JuliaMono" "Symbols Nerd Font" "Noto Color Emoji"];
+        serif = ["Alegreya" "Petrona" "Noto Serif" "Noto Color Emoji"];
+        sansSerif = ["Atkinson Hyperlegible" "Overpass" "Nunito" "Noto Color Emoji"];
       };
       hinting = {
         enable = true;
@@ -237,9 +237,10 @@
     packages = [
       pkgs.noto-fonts
       pkgs.noto-fonts-emoji
+      pkgs.jetbrains-mono
 
       pkgs.material-design-icons
-      (pkgs.google-fonts.override {fonts = ["Overpass" "Nunito"];})
+      (pkgs.google-fonts.override {fonts = ["Overpass" "Nunito" "Alegreya" "Petrona" "Atkinson Hyperlegible"];})
       (pkgs.unstable.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
       pkgs.monaspace
     ];

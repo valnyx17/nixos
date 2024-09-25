@@ -12,18 +12,19 @@ config.hide_tab_bar_if_only_one_tab = true
 -- })
 config.font = wezterm.font_with_fallback({
   -- { family = "Rec Mono Waves", weight = "Regular" },
-  { family = "Monaspace Argon", weight = "Medium" },
+  -- { family = "Monaspace Argon", weight = "Medium" },
+  { family = "Jetbrains Mono", weight = "Medium" },
   -- "CozetteHiDpi",
   "Symbols Nerd Font",
 })
-config.font_rules = {
-  {
-    italic = true,
-    font = wezterm.font_with_fallback({
-      {family = 'Monaspace Radon', weight = 'Regular'}
-    })
-  },
-}
+-- config.font_rules = {
+--   {
+--     italic = true,
+--     font = wezterm.font_with_fallback({
+--       {family = 'Monaspace Radon', weight = 'Regular'}
+--     })
+--   },
+-- }
 config.font_size = 13
 config.cell_width = 0.95
 
