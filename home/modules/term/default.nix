@@ -351,7 +351,6 @@ in {
       cdi = "broot";
       bd = "popd || cd ..";
       lf = "yazi";
-      lazygit = "gitui";
       ps = "procs";
       du = "dust";
       df = "duf";

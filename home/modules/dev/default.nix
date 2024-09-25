@@ -39,8 +39,28 @@
   ];
 
   # git
-  programs.gitui = {
+  programs.lazygit = {
     enable = true;
+    settings = {
+      gui = {
+        showIcons = true;
+        showFileTree = true;
+        theme = {
+          activeBorderColor = [ "magenta" "bold" ];
+          inactiveBorderColor = [ "black" ];
+        };
+      };
+      os = {
+        editCommand = "nvim";
+        editCommandTemplate = "{{editor}} {{filename}}";
+      };
+      keybinding.universal = {
+        quit = "q";
+      };
+    };
+  };
+  programs.gitui = {
+    enable = false;
     keyConfig = ''
       (
           move_left: Some(( code: Char('h'), modifiers: "")),
