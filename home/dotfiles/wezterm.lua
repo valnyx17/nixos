@@ -13,7 +13,7 @@ config.hide_tab_bar_if_only_one_tab = true
 config.font = wezterm.font_with_fallback({
   -- { family = "Rec Mono Waves", weight = "Regular" },
   -- { family = "Monaspace Argon", weight = "Medium" },
-  { family = "Jetbrains Mono", weight = "Medium" },
+  { family = "Intel One Mono", weight = "Medium" },
   -- "CozetteHiDpi",
   "Symbols Nerd Font",
 })

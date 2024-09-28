@@ -216,7 +216,7 @@
       antialias = true;
       defaultFonts = {
         emoji = ["Noto Color Emoji"];
-        monospace = ["Jetbrains Mono" "Monaspace Neon" "JuliaMono" "Symbols Nerd Font" "Noto Color Emoji"];
+        monospace = ["Intel One Mono" "Jetbrains Mono" "Monaspace Neon" "JuliaMono" "Symbols Nerd Font" "Noto Color Emoji"];
         serif = ["Alegreya" "Petrona" "Noto Serif" "Noto Color Emoji"];
         sansSerif = ["Atkinson Hyperlegible" "Overpass" "Nunito" "Noto Color Emoji"];
       };
@@ -238,6 +238,7 @@
       pkgs.noto-fonts
       pkgs.noto-fonts-emoji
       pkgs.jetbrains-mono
+      pkgs.intel-one-mono
 
       pkgs.material-design-icons
       (pkgs.google-fonts.override {fonts = ["Overpass" "Nunito" "Alegreya" "Petrona" "Atkinson Hyperlegible"];})
