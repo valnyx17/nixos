@@ -18,7 +18,7 @@ in {
     kitty = {
       enable = true;
       shellIntegration.enableZshIntegration = true;
-      theme = "Catppuccin-Macchiato";
+      theme = "Catppuccin-Mocha";
       environment = {
         "TERM" = "xterm-256color";
       };
@@ -134,7 +134,7 @@ in {
           plugin = catppuccin;
           extraConfig = ''
             set -g status-position top
-            set -g @catppuccin_flavor 'macchiato'
+            set -g @catppuccin_flavor 'mocha'
 
             set -g @catppuccin_window_left_separator "█"
             set -g @catppuccin_window_right_separator "█ "
