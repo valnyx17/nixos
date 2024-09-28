@@ -31,7 +31,6 @@ in {
           blockbench
           blender
           prismlauncher
-          steam
           unstable.vscode-fhs
         ]);
       sessionVariables = {

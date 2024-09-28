@@ -93,7 +93,7 @@
 
   # system-wide pkgs
   environment.systemPackages = builtins.attrValues {
-    inherit (pkgs) python3 fuse3 floorp localsend parsec-bin kanata;
+    inherit (pkgs) python3 fuse3 floorp localsend parsec-bin kanata bubblewrap;
     inherit (pkgs.unstable) neovim;
   };
 
@@ -394,4 +394,11 @@
     zlib
     libgit2
   ];
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+  };
 }
