@@ -28,6 +28,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     st.url = "github:devawaves/st";
   };
 
@@ -36,6 +41,7 @@
     nixpkgs,
     home-manager,
     flake-utils,
+    nixos-cosmic,
     ...
   } @ inputs: let
     mkApp = flake-utils.lib.mkApp;
@@ -64,6 +70,13 @@
         modules = [
           inputs.disko.nixosModules.default
           (import ./disko.nix {device = "/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_with_Heatsink_1TB_S6WSNJ0T900943T";})
+          {
+            nix.settings = {
+              substituters = [ "https://cosmic.cachix.org/" ];
+              trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+            };
+          }
+          nixos-cosmic.nixosModules.default
           ./system/waves/configuration.nix
           home-manager.nixosModules.home-manager
           {

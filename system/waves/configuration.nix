@@ -312,8 +312,8 @@
       geary # email reader
       evince # document viewer
     ]);
-  # services.displayManager.cosmic-greeter.enable = false;
-  # services.desktopManager.cosmic.enable = true;
+  services.displayManager.cosmic-greeter.enable = false;
+  services.desktopManager.cosmic.enable = true;
 
   # i18n
   time.timeZone = "America/Indiana/Indianapolis";
