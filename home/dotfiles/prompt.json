@@ -1,31 +1,29 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette": {
+    "nix": "#81A1C1",
+    "error": "#BF616A",
+    "backgroundish": "#525252",
+    "white": "#FFF",
+    "whiteish": "#DDE1E6"
+  },
   "blocks": [
     {
       "alignment": "left",
       "segments": [
         {
-          "foreground": "#dde1e6",
-          "foreground_templates": [
-            "{{if gt .Code 0}}#BF616A{{end}}"
-          ],
-          "style": "plain",
-          "template": "<b>\uf10c</b>",
-          "type": "text"
-        },
-        {
-          "foreground": "#dde1e6",
+          "foreground": "p:whiteish",
           "properties": {
-            "folder_separator_icon": " / ",
+            "folder_separator_icon": "/",
             "home_icon": "~",
-            "style": "folder"
+            "style": "letter"
           },
           "style": "plain",
-          "template": " {{.Path}} ",
+          "template": "{{.Path}} ",
           "type": "path"
         },
         {
-          "foreground": "#dde1e6",
+          "foreground": "p:whiteish",
           "properties": {
             "branch_icon": "",
             "branch_ahead_icon": "\u21e1",
@@ -36,14 +34,15 @@
             "github_icon": ""
           },
           "style": "plain",
-          "template": "<#525252>git:(</>{{.HEAD}}{{if .BranchStatus }}{{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}<#dde1e6>*</>{{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }}|{{ end }}{{ if .Staging.Changed }}+{{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}${{ .StashCount }}{{ end }}<#525252>)</> ",
+          "template": "<p:backgroundish>on </>{{.HEAD}}<p:backgroundish></> ",
           "type": "git"
         },
         {
-          "foreground": "#fff",
+          "foreground": "p:white",
           "foreground_templates": [
-            "{{if contains .Env.IN_NIX_SHELL \"pure\"}}#81A1C1{{end}}",
-            "{{if contains .Env.IN_NIX_SHELL \"impure\"}}#81A1C1{{end}}"
+            "{{if contains .Env.IN_NIX_SHELL \"pure\"}}p:nix{{end}}",
+            "{{if contains .Env.IN_NIX_SHELL \"impure\"}}p:nix{{end}}",
+            "{{if gt .Code 0}}p:error{{end}}"
           ],
           "style": "plain",
           "template": "<b>{{if .Root}}#{{else}}λ{{end}}</b> ",
@@ -57,23 +56,26 @@
       "segments": [
         {
           "type": "executiontime",
-          "template": "<#eed49f>{{ .FormattedMs }}</> <#525252>|</>"
+          "style": "plain",
+          "template": "<#eed49f>{{ .FormattedMs }}</>"
         }
       ],
       "type": "rprompt"
     }
   ],
-  "console_title_template": "{{if .Root}}(Admin){{end}} {{.PWD}}",
+  "console_title_template": "{{if .Root}}#{{end}} {{.PWD}}",
   "transient_prompt": {
-    "foreground": "#fff",
+    "foreground": "p:white",
     "foreground_templates": [
-      "{{if gt .Code 0 }}#BF616A{{ end }}"
+      "{{if contains .Env.IN_NIX_SHELL \"pure\"}}p:nix{{end}}",
+      "{{if contains .Env.IN_NIX_SHELL \"impure\"}}p:nix{{end}}",
+      "{{if gt .Code 0 }}p:error{{ end }}"
     ],
-    "template": "<b>\uf10c</b> "
+    "template": "<b>λ</b> "
   },
   "secondary_prompt": {
-    "foreground": "#525252",
-    "template": "\u25b2 "
+    "foreground": "p:backgroundish",
+    "template": "<b>λ></b> "
   },
   "version": 2
 }
