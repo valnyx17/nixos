@@ -156,6 +156,7 @@
   services.gnome.gnome-keyring.enable = true;
   services.libinput.enable = true;
   services.printing.enable = true;
+  services.flatpak.enable = true;
 
   # local name resolution
   services.avahi = {
@@ -216,7 +217,7 @@
       antialias = true;
       defaultFonts = {
         emoji = ["Noto Color Emoji"];
-        monospace = ["Intel One Mono" "Jetbrains Mono" "Monaspace Neon" "JuliaMono" "Symbols Nerd Font" "Noto Color Emoji"];
+        monospace = ["0xProto" "Intel One Mono" "Symbols Nerd Font" "Noto Color Emoji"];
         serif = ["Alegreya" "Petrona" "Noto Serif" "Noto Color Emoji"];
         sansSerif = ["Atkinson Hyperlegible" "Overpass" "Nunito" "Noto Color Emoji"];
       };
@@ -237,13 +238,12 @@
     packages = [
       pkgs.noto-fonts
       pkgs.noto-fonts-emoji
-      pkgs.jetbrains-mono
       pkgs.intel-one-mono
+      pkgs._0xproto
 
       pkgs.material-design-icons
       (pkgs.google-fonts.override {fonts = ["Overpass" "Nunito" "Alegreya" "Petrona" "Atkinson Hyperlegible"];})
       (pkgs.unstable.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
-      pkgs.monaspace
     ];
   };
 

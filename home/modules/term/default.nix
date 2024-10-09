@@ -18,12 +18,12 @@ in {
     kitty = {
       enable = true;
       shellIntegration.enableZshIntegration = true;
-      theme = "Catppuccin-Mocha";
+      theme = "Nord";
       environment = {
         "TERM" = "xterm-256color";
       };
       settings = {
-        font_family = "Intel One Mono";
+        font_family = "0xProto";
         font_size = "13.0";
         disable_ligatures = "never";
         undercurl_style = "thick-sparse";
@@ -58,6 +58,9 @@ in {
         in
           (builtins.concatStringsSep "," mappings) + " Symbols Nerd Font";
       };
+      extraConfig = ''
+        font_features "0xProto-Italic +ss01"
+      '';
     };
     wezterm = {
       enable = true;
@@ -172,7 +175,7 @@ in {
         #          '';
         #        }
       ];
-      extraConfig = ''
+      extraConfig = /*tmux*/ ''
         set-option -sa terminal-overrides ",xterm*:Tc"
         set-window-option -g pane-base-index 1
         set-option -g renumber-windows on
