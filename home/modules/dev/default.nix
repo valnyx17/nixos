@@ -36,6 +36,8 @@
     fx
     jq
     deno
+
+    transmission_4-gtk
   ];
 
   # git
