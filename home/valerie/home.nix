@@ -52,4 +52,9 @@ in {
     programs.git.enable = true;
     systemd.user.startServices = "sd-switch";
   };
+  xdg.mime = {
+    defaultApplications = {
+      "applications/zip" = "org.gnome.FileRoller.desktop";
+    };
+  };
 }
