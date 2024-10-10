@@ -5,6 +5,7 @@
   ...
 }: let
   pst = pkgs.writeShellScriptBin "pst" (builtins.readFile ../../dotfiles/pst);
+  runpkg = pkgs.writeShellScriptBin "run" (builtins.readFile ../../dotfiles/run);
 in {
   xdg.configFile."wezterm/colors/camellia-hope-dark.toml".text = builtins.readFile (pkgs.fetchFromGitHub {
       owner = "camellia-theme";
@@ -375,7 +376,8 @@ in {
     shellAliases = {
       tm = "tmuxifier";
       t = "tmux";
-      run = "nix-shell --command 'zsh' -p";
+      # run = "nix-shell --command 'zsh' -p";
+      run = "${runpkg}/bin/run";
       fhs = "steam-run";
       nsh = "nix-shell --command 'zsh'";
       nd = "nix develop";
