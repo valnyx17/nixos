@@ -36,7 +36,7 @@
       };
 
       "org/gnome/shell/extensions/user-theme" = {
-        name = "Materia-dark";
+        name = "";
       };
 
       "org/gnome/shell/extensions/unite" = {
