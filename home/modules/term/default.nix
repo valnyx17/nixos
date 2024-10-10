@@ -177,6 +177,7 @@ in {
         #        }
       ];
       extraConfig = /*tmux*/ ''
+        set -g default-terminal "tmux-256color"
         set-option -sa terminal-overrides ",xterm*:Tc"
         set-window-option -g pane-base-index 1
         set-option -g renumber-windows on
