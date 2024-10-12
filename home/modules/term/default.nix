@@ -397,8 +397,8 @@ in {
       # ll = "eza -l --no-time --group-directories-first";
       # lt = "eza -aT --no-time --group-directories-first";
       lg = "lazygit";
-      ls = "eza -aTL 1 --icons --group-directories-first";
-      la = "eza -alTL 1 --icons --no-time --group-directories-first";
+      ls = "eza -alTL 1 --icons --no-time --group-directories-first";
+      la = "eza -a --icons --no-time --group-directories-first";
       cat = "bat --theme gruvbox-dark --style numbers,changes --color=always --tabs=2 --wrap=never";
       diff = "delta";
       top = "btm";
