@@ -58,6 +58,10 @@ in {
           ];
         in
           (builtins.concatStringsSep "," mappings) + " Symbols Nerd Font";
+        input_delay = "0";
+        repaint_delay = "2";
+        sync_to_monitor = "no";
+        wayland_enable_ime = "no";
       };
       extraConfig = ''
         font_features "0xProto-Italic +ss01"
