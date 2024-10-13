@@ -36,6 +36,8 @@
     fx
     jq
     deno
+    gleam
+    unzip
 
     transmission_4-gtk
   ];
@@ -48,8 +50,8 @@
         showIcons = true;
         showFileTree = true;
         theme = {
-          activeBorderColor = [ "magenta" "bold" ];
-          inactiveBorderColor = [ "black" ];
+          activeBorderColor = ["magenta" "bold"];
+          inactiveBorderColor = ["black"];
         };
       };
       os = {

@@ -162,37 +162,41 @@ in {
         #          '';
         #        }
       ];
-      extraConfig = /*tmux*/ ''
-        set -g default-terminal "tmux-256color"
-        set-option -sa terminal-overrides ",xterm*:Tc"
-        set-window-option -g pane-base-index 1
-        set-option -g renumber-windows on
-        set -sg escape-time 0
+      extraConfig =
+        /*
+        tmux
+        */
+        ''
+          set -g default-terminal "tmux-256color"
+          set-option -sa terminal-overrides ",xterm*:Tc"
+          set-window-option -g pane-base-index 1
+          set-option -g renumber-windows on
+          set -sg escape-time 0
 
-        # Use Alt-arrow keys without prefix key to switch panes
-        bind -n M-Left select-pane -L
-        bind -n M-Right select-pane -R
-        bind -n M-Up select-pane -U
-        bind -n M-Down select-pane -D
+          # Use Alt-arrow keys without prefix key to switch panes
+          bind -n M-Left select-pane -L
+          bind -n M-Right select-pane -R
+          bind -n M-Up select-pane -U
+          bind -n M-Down select-pane -D
 
-        # Shift arrow to switch windows
-        bind -n S-Left  previous-window
-        bind -n S-Right next-window
+          # Shift arrow to switch windows
+          bind -n S-Left  previous-window
+          bind -n S-Right next-window
 
-        # Shift Alt vim keys to switch windows
-        bind -n M-H previous-window
-        bind -n M-L next-window
+          # Shift Alt vim keys to switch windows
+          bind -n M-H previous-window
+          bind -n M-L next-window
 
-        bind-key -T copy-mode-vi v send-keys -X begin-selection
-        bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
-        bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+          bind-key -T copy-mode-vi v send-keys -X begin-selection
+          bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+          bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
 
-        bind '_' split-window -v -c "#{pane_current_path}"
-        bind | split-window -h -c "#{pane_current_path}"
-        bind c new-window -c "#{pane_current_path}"
+          bind '_' split-window -v -c "#{pane_current_path}"
+          bind | split-window -h -c "#{pane_current_path}"
+          bind c new-window -c "#{pane_current_path}"
 
-        run '~/.tmux/plugins/tpm/tpm'
-      '';
+          run '~/.tmux/plugins/tpm/tpm'
+        '';
     };
   };
   xdg.configFile."lf/icons".source = ../../dotfiles/lf-icons;

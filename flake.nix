@@ -51,9 +51,9 @@
       inherit self inputs nixpkgs home-manager;
       channelsConfig.allowUnfree = true;
       sharedOverlays = [
-          self.overlays.additions
-          self.overlays.modifications
-          self.overlays.unstable-packages
+        self.overlays.additions
+        self.overlays.modifications
+        self.overlays.unstable-packages
       ];
 
       # host defaults
@@ -72,8 +72,8 @@
           (import ./disko.nix {device = "/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_with_Heatsink_1TB_S6WSNJ0T900943T";})
           {
             nix.settings = {
-              substituters = [ "https://cosmic.cachix.org/" ];
-              trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+              substituters = ["https://cosmic.cachix.org/"];
+              trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="];
             };
           }
           nixos-cosmic.nixosModules.default
