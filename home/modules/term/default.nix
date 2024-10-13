@@ -343,13 +343,13 @@ in {
       eval "$(${pkgs.oh-my-posh}/bin/oh-my-posh init zsh --config ${../../dotfiles/prompt.json})"
     '';
     dirHashes = {
-      dl = "${config.home.homeDirectory}/Downloads";
-      docs = "${config.home.homeDirectory}/Documents";
-      src = "${config.home.homeDirectory}/src";
-      dots = "${config.home.homeDirectory}/nixos";
+      dl = "${config.xdg.userDirs.download}";
+      docs = "${config.xdg.userDirs.documents}";
+      code = "${config.xdg.userDirs.documents}/code";
       nix = "${config.home.homeDirectory}/nixos";
-      pics = "${config.home.homeDirectory}/Pictures";
-      vids = "${config.home.homeDirectory}/Videos";
+      nixos = "${config.home.homeDirectory}/nixos";
+      pics = "${config.xdg.userDirs.pictures}";
+      vids = "${config.xdg.userDirs.videos}";
     };
     sessionVariables = {
       DIRENV_LOG_FORMAT = "";
