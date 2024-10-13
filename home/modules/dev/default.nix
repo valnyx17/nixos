@@ -84,7 +84,7 @@
     package = pkgs.gitAndTools.gitFull;
     lfs.enable = true;
 
-    userName = "deva";
+    userName = "valerie";
     userEmail = "hi@dessa.dev";
     signing = {
       key = "CC10324DD962CB7E";
