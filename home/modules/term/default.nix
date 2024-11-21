@@ -7,14 +7,6 @@
   pst = pkgs.writeShellScriptBin "pst" (builtins.readFile ../../dotfiles/pst);
   runpkg = pkgs.writeShellScriptBin "run" (builtins.readFile ../../dotfiles/run);
 in {
-  xdg.configFile."wezterm/colors/camellia-hope-dark.toml".text = builtins.readFile (pkgs.fetchFromGitHub {
-      owner = "camellia-theme";
-      repo = "camellia";
-      rev = "3b319bb337caccc311e60c3a8d357c4431b63680";
-      hash = "sha256-HNdGHJ8n81HpVK9gFiRLZBBh0sz4FIUUx/ykGyoxv0c=";
-    }
-    + "/ports/wezterm/colors/camelliaHopeDark.toml");
-  xdg.configFile."wezterm/colors/chadtain.toml".text = builtins.readFile ../../dotfiles/chadtain.toml;
   programs = {
     kitty = {
       enable = true;
@@ -24,7 +16,7 @@ in {
         "TERM" = "xterm-256color";
       };
       settings = {
-        font_family = "0xProto";
+        font_family = "Cartograph CF";
         font_size = "13.0";
         disable_ligatures = "never";
         undercurl_style = "thick-sparse";
@@ -195,6 +187,7 @@ in {
           bind | split-window -h -c "#{pane_current_path}"
           bind c new-window -c "#{pane_current_path}"
 
+          set -g status-position top
           run '~/.tmux/plugins/tpm/tpm'
         '';
     };
@@ -223,9 +216,9 @@ in {
     nurl
     delta
     bottom
+    unstable.dwt1-shell-color-scripts
   ];
 
-  programs.wezterm.enableZshIntegration = true;
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
@@ -403,12 +396,9 @@ in {
       lg = "lazygit";
       ls = "eza -alTL 1 --icons --no-time --group-directories-first";
       la = "eza -a --icons --no-time --group-directories-first";
-      cat = "bat --theme gruvbox-dark --style numbers,changes --color=always --tabs=2 --wrap=never";
+      cat = "bat --theme Nord --style numbers,changes --color=always --tabs=2 --wrap=never";
       diff = "delta";
       top = "btm";
-      c = "code";
-      cr = "code -r";
-      cw = "code --wait";
       glg = "git lg";
       serve = "python3 -m http.server";
       ytmp3 = "yt-dlp --ignore-errors --format bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail --embed-metadata --output '%(title)s.%(ext)s'";

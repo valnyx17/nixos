@@ -38,6 +38,8 @@
     deno
     gleam
     unzip
+    porsmo
+    mprocs
 
     transmission_4-gtk
   ];

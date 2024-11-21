@@ -34,6 +34,8 @@
     };
 
     st.url = "github:devawaves/st";
+
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs = {

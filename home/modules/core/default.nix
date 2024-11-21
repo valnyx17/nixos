@@ -1,4 +1,14 @@
 {pkgs, ...}: {
+  home.packages = with pkgs; [
+    spotify
+
+    noto-fonts
+    noto-fonts-emoji
+    material-design-icons
+    commit-mono
+    (google-fonts.override {fonts = ["Overpass" "Nunito"];})
+    (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+  ];
   services.gnome-keyring = {
     enable = true;
     components = ["secrets" "ssh"];
@@ -43,7 +53,7 @@
       set recolor-lightcolor          "#2E3440"
       set recolor-darkcolor           "#ECEFF4"
       set recolor                     "true"
-      set font                        "0xProto"
+      set font                        "Lacklustre"
       set guioptions                  none
     '';
   };

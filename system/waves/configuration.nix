@@ -92,10 +92,23 @@
   };
 
   # system-wide pkgs
-  environment.systemPackages = builtins.attrValues {
-    inherit (pkgs) python3 fuse3 floorp localsend parsec-bin kanata bubblewrap;
-    inherit (pkgs.unstable) neovim;
-  };
+  environment.systemPackages = with pkgs;
+    [
+      python3
+      fuse3
+      floorp
+      localsend
+      parsec-bin
+      kanata
+      bubblewrap
+      inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+    ]
+    ++ [
+      (unstable.koboldcpp.override {
+        cublasSupport = true;
+        cudaArches = ["sm_86"];
+      })
+    ];
 
   # security
   security = {
@@ -254,7 +267,7 @@
   };
 
   services.xserver.videoDrivers = ["nvidia"];
-  boot.kernelParams = ["nvidia-drm.fbdev=1"];
+  boot.kernelParams = ["nvidia-drm.fbdev=1" "sysrq_always_enabled=1"];
 
   hardware.nvidia = {
     # Modesetting is required.
