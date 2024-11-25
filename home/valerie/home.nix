@@ -35,7 +35,7 @@ in {
         ]);
       sessionVariables = {
         NIX_AUTO_RUN = "1";
-        FLAKE = "/home/valerie/nixos";
+        NH_FLAKE = "/home/valerie/nixos";
       };
       stateVersion = "24.11";
     };

@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
-config.color_scheme = "nordfox"
+config.color_scheme = "Gruvbox Material (Gogh)"
 config.use_fancy_tab_bar = false
 config.window_decorations = "RESIZE"
 config.hide_tab_bar_if_only_one_tab = true
@@ -12,7 +12,7 @@ config.font = wezterm.font_with_fallback({
 })
 
 config.font_size = 13
-config.line_height = 1.2
+-- config.line_height = 1.2
 
 config.set_environment_variables = {
     TERM = "xterm-256color",
@@ -37,7 +37,7 @@ config.unix_domains = {
     },
 }
 config.freetype_load_flags = "DEFAULT"
-config.window_background_opacity = 0.95
+config.window_background_opacity = 1.00
 config.max_fps = 144
 config.scrollback_lines = 10000
 

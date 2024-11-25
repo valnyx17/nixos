@@ -72,19 +72,44 @@ in {
       plugins = with pkgs.tmuxPlugins; [
         vim-tmux-navigator
         yank
-        resurrect
         {
-          plugin = continuum;
-          extraConfig = ''
-            set -g @continuum-restore 'on'
-          '';
+            plugin = catppuccin;
+            extraConfig = /*tmux*/ ''
+                # NOTE: you can use vars with $<var> and $${<var>} as long as the str is double quoted: ""
+                # WARNING: hex colors can't contain capital letters
+
+                # --> Gruvbox (Material)
+                set -g @thm_bg "#222526"
+                set -g @thm_fg "#d4be98"
+                set -g @thm_cyan "#89b482"
+                set -g @thm_black "#665c54"
+                set -g @thm_gray "#504945"
+                set -g @thm_magenta "#d3869b"
+                set -g @thm_pink "#ea6962"
+                set -g @thm_red "#ea6962"
+                set -g @thm_green "#a9b665"
+                set -g @thm_yellow "#d8a657"
+                set -g @thm_blue "#7daea3"
+                set -g @thm_orange "#e78a4e"
+                set -g @thm_black4 "#928374"
+
+                set -g @catppuccin_window_status_style "slanted"
+                set -g status-position top
+            '';
         }
-        {
-          plugin = nord;
-          extraConfig = ''
-            set -g status-position top
-          '';
-        }
+        # resurrect
+        # {
+        #   plugin = continuum;
+        #   extraConfig = ''
+        #     set -g @continuum-restore 'on'
+        #   '';
+        # }
+        # {
+        #   plugin = nord;
+        #   extraConfig = ''
+        #     set -g status-position top
+        #   '';
+        # }
         #        {
         #          plugin = tokyo-night-tmux;
         #          extraConfig = ''
