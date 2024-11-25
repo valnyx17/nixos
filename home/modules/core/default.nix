@@ -6,6 +6,8 @@
     noto-fonts-emoji
     material-design-icons
     commit-mono
+    corefonts
+    vistafonts
     (google-fonts.override {fonts = ["Overpass" "Nunito"];})
     (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
   ];
