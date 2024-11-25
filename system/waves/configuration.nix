@@ -313,7 +313,9 @@
   # gui
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.defaultSession = "none+awesome";
   services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.windowManager.awesome.enable = true;
   environment.gnome.excludePackages =
     (with pkgs; [
       # for packages that are pkgs.*
@@ -326,8 +328,6 @@
       geary # email reader
       evince # document viewer
     ]);
-  services.displayManager.cosmic-greeter.enable = false;
-  services.desktopManager.cosmic.enable = true;
 
   # i18n
   time.timeZone = "America/Indiana/Indianapolis";
