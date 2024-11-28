@@ -15,6 +15,12 @@ in {
 
     home = {
       file.".ssh/id_user.pub".text = builtins.readFile ../../system/waves/id_user.pub;
+      file.".config/nixpkgs/config.nix".text = ''
+        {
+          allowUnfree = true;
+          allowUnfreePredicate = _: true;
+        }
+      '';
       username = "valerie";
       homeDirectory = "/home/valerie";
       extraOutputsToInstall = ["doc" "devdoc"];
