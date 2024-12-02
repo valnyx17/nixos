@@ -2,12 +2,12 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
-config.color_scheme = "Gruvbox Material (Gogh)"
+config.color_scheme = "OneHalfDark"
 config.use_fancy_tab_bar = false
 config.window_decorations = "RESIZE"
 config.hide_tab_bar_if_only_one_tab = true
 config.font = wezterm.font_with_fallback({
-    { family = "Cartograph CF", weight = "Medium" },
+    { family = "CommitMono", weight = "Medium", harfbuzz_features = { 'ss01=on', 'ss02=on', 'ss03=on', 'ss04=on', 'ss05=on' } },
     "Symbols Nerd Font",
 })
 

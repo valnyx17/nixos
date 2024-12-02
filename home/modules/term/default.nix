@@ -12,6 +12,63 @@ in {
       enable = true;
       extraConfig = builtins.readFile ../../dotfiles/wezterm.lua;
     };
+    kitty = {
+      enable = true;
+      package = pkgs.unstable.kitty;
+      shellIntegration.enableZshIntegration = true;
+      theme = "One Half Dark";
+      environment = {
+        "TERM" = "xterm-256color";
+      };
+      settings = {
+        font_family = "CommitMono";
+        font_size = "11.0";
+        cursor_shape = "beam";
+        cursor_blink_interval = "0.0";
+        cursor_trail = "3";
+        cursor_trail_decay = "0.1 0.4";
+        disable_ligatures = "never";
+        undercurl_style = "thick-sparse";
+        enable_audio_bell = false;
+        confirm_os_window_close = 0;
+        dynamic_background_opacity = true;
+        mouse_hide_wait = "-1.0";
+        window_padding_width = 10;
+        # background_opacity = "0.95";
+        background_blur = 5;
+        symbol_map = let
+          mappings = [
+            "U+23FB-U+23FE"
+            "U+2B58"
+            "U+E200-U+E2A9"
+            "U+E0A0-U+E0A3"
+            "U+E0B0-U+E0BF"
+            "U+E0C0-U+E0C8"
+            "U+E0CC-U+E0CF"
+            "U+E0D0-U+E0D2"
+            "U+E0D4"
+            "U+E700-U+E7C5"
+            "U+F000-U+F2E0"
+            "U+2665"
+            "U+26A1"
+            "U+F400-U+F4A8"
+            "U+F67C"
+            "U+E000-U+E00A"
+            "U+F300-U+F313"
+            "U+E5FA-U+E62B"
+          ];
+        in
+          (builtins.concatStringsSep "," mappings) + " Symbols Nerd Font Mono";
+        input_delay = "0";
+        repaint_delay = "2";
+        sync_to_monitor = "no";
+        wayland_enable_ime = "no";
+      };
+      extraConfig = ''
+        font_features "0xProto-Italic +ss01"
+        font_features "CommitMono +ss01 +ss02 +ss03 +ss04 +ss05"
+      '';
+    };
     broot = {
       enable = true;
       enableZshIntegration = true;
@@ -24,6 +81,7 @@ in {
     yazi = {
       enable = true;
       enableZshIntegration = true;
+      package = pkgs.unstable.yazi;
       flavors = {
         tokyo-night = pkgs.fetchFromGitHub {
           owner = "BennyOe";
@@ -73,28 +131,32 @@ in {
         vim-tmux-navigator
         yank
         {
-            plugin = catppuccin;
-            extraConfig = /*tmux*/ ''
-                # NOTE: you can use vars with $<var> and $${<var>} as long as the str is double quoted: ""
-                # WARNING: hex colors can't contain capital letters
+          plugin = catppuccin;
+          extraConfig =
+            /*
+            tmux
+            */
+            ''
+              # NOTE: you can use vars with $<var> and $${<var>} as long as the str is double quoted: ""
+              # WARNING: hex colors can't contain capital letters
 
-                # --> Gruvbox (Material)
-                set -g @thm_bg "#222526"
-                set -g @thm_fg "#d4be98"
-                set -g @thm_cyan "#89b482"
-                set -g @thm_black "#665c54"
-                set -g @thm_gray "#504945"
-                set -g @thm_magenta "#d3869b"
-                set -g @thm_pink "#ea6962"
-                set -g @thm_red "#ea6962"
-                set -g @thm_green "#a9b665"
-                set -g @thm_yellow "#d8a657"
-                set -g @thm_blue "#7daea3"
-                set -g @thm_orange "#e78a4e"
-                set -g @thm_black4 "#928374"
+              # --> Gruvbox (Material)
+              set -g @thm_bg "#222526"
+              set -g @thm_fg "#d4be98"
+              set -g @thm_cyan "#89b482"
+              set -g @thm_black "#665c54"
+              set -g @thm_gray "#504945"
+              set -g @thm_magenta "#d3869b"
+              set -g @thm_pink "#ea6962"
+              set -g @thm_red "#ea6962"
+              set -g @thm_green "#a9b665"
+              set -g @thm_yellow "#d8a657"
+              set -g @thm_blue "#7daea3"
+              set -g @thm_orange "#e78a4e"
+              set -g @thm_black4 "#928374"
 
-                set -g @catppuccin_window_status_style "slanted"
-                set -g status-position top
+              set -g @catppuccin_window_status_style "slanted"
+              set -g status-position top
             '';
         }
         # resurrect
