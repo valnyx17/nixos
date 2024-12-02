@@ -159,8 +159,16 @@
     enable = true;
     matchBlocks = {
       "hi@dessa.dev" = {
-        host = "gitlab.com github.com 192.168.1.203";
+        host = "gitlab.com github.com";
         identitiesOnly = true;
+        identityFile = [
+          "~/.ssh/id_user"
+        ];
+      };
+      "docker lmao" = {
+        host = "docker 192.168.1.203";
+        user = "git";
+        port = 2222;
         identityFile = [
           "~/.ssh/id_user"
         ];
