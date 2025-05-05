@@ -1,0 +1,22 @@
+theme = Tomorrow Night
+font-family = Null Mono
+font-feature = dlig
+font-feature = calt
+font-size = 12
+
+cursor-style = bar
+cursor-style-blink = false
+
+confirm-close-surface = false
+mouse-hide-while-typing = true
+
+window-padding-x = 10
+window-padding-y = 10
+
+background-blur-radius = 20
+background-opacity = 1
+
+keybind = ctrl+shift+t=new_tab
+keybind = ctrl+shift+n=new_window
+keybind = ctrl+shift+r=reload_config
+keybind = ctrl+shift+space=toggle_quick_terminal

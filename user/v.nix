@@ -1,0 +1,8 @@
+[
+  ./qt.nix
+  ./zathura.nix
+  ./obs.nix
+  ./core.nix
+  ./dev.nix
+  ./term.nix
+]

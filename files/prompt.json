@@ -1,0 +1,83 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette": {
+    "nix": "#81A1C1",
+    "error": "#BF616A",
+    "backgroundish": "#525252",
+    "white": "#FFF",
+    "whiteish": "#DDE1E6"
+  },
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "p:whiteish",
+          "properties": {
+            "folder_separator_icon": "/",
+            "home_icon": "~",
+            "style": "letter"
+          },
+          "style": "plain",
+          "template": "{{ $segment := .Segments.Git }}{{ if $segment.Dir }}<b>{{ $segment.RepoName }}</b>{{if ne $segment.RepoName .Path}}{{ trimPrefix $segment.Dir .PWD }}{{ end }}{{ else }}{{ path .Path .Location }}{{ end }} ",
+          "type": "path"
+        },
+        {
+          "foreground": "p:whiteish",
+          "properties": {
+            "branch_icon": "",
+            "branch_identical_icon": "",
+            "branch_ahead_icon": "<#88C0D0>\u21e1</>",
+            "branch_behind_icon": "<#88C0D0>\u21e3</>",
+            "branch_gone_icon": "<p:error>×</>",
+            "fetch_stash_count": true,
+            "fetch_status": true,
+            "fetch_upstream_icon": true,
+            "github_icon": ""
+          },
+          "style": "plain",
+          "template": "<p:backgroundish>{{.HEAD}}{{if .BranchStatus }} {{.BranchStatus}}{{end}}{{ if .Working.Changed }}<p:error>*</>{{ end }}{{if gt .StashCount 0}}${{end}}</> ",
+          "type": "git"
+        },
+        {
+          "foreground": "p:white",
+          "foreground_templates": [
+            "{{if contains .Env.IN_NIX_SHELL \"pure\"}}p:nix{{end}}",
+            "{{if contains .Env.IN_NIX_SHELL \"impure\"}}p:nix{{end}}",
+            "{{if gt .Code 0}}p:error{{end}}"
+          ],
+          "style": "plain",
+          "template": "<b>{{if .Root}}#{{else}}\u276f{{end}}</b> ",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "executiontime",
+          "style": "plain",
+          "template": "<#eed49f>{{ .FormattedMs }}</>"
+        }
+      ],
+      "type": "rprompt"
+    }
+  ],
+  "console_title_template": "{{if .Root}}#{{end}} {{.PWD}}",
+  "transient_prompt": {
+    "foreground": "p:white",
+    "foreground_templates": [
+      "{{if contains .Env.IN_NIX_SHELL \"pure\"}}p:nix{{end}}",
+      "{{if contains .Env.IN_NIX_SHELL \"impure\"}}p:nix{{end}}",
+      "{{if gt .Code 0 }}p:error{{ end }}"
+    ],
+    "template": "<b>\u276f</b> "
+  },
+  "secondary_prompt": {
+    "foreground": "p:backgroundish",
+    "template": "<b>λ></b> "
+  },
+  "version": 2
+}

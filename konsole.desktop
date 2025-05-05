@@ -1,0 +1,9 @@
+[Desktop Entry]
+Categories=System
+Comment=Open Konsole
+Exec=konsole
+GenericName=Console
+Icon=utilities-terminal
+Name=Konsole
+Type=Application
+Version=1.4

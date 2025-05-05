@@ -1,4 +1,3 @@
 pkgs: {
-  disko = pkgs.callPackage ./disko.nix pkgs;
-  tokyo-night-tmux = pkgs.callPackage ./tokyo-night-tmux.nix pkgs;
+  fuchsia-cursors = pkgs.callPackage ./fuchsia-cursors.nix pkgs;
 }

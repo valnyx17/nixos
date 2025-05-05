@@ -1,41 +1,32 @@
 {
-  description = "nixos system configuration";
-
+  description = "V's NixOS Configuration";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    zen-browser.url = "github:valnyx17/zen-browser-flake";
     flake-utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
-
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     disko = {
       url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-
+    sops-nix.url = "github:Mic92/sops-nix";
+    impermanence.url = "github:nix-community/impermanence";
     nh = {
       url = "github:viperML/nh";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-
-    nix-inspect.url = "github:bluskript/nix-inspect";
-
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs";
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-
-    st.url = "github:devawaves/st";
-
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs = {
@@ -43,7 +34,6 @@
     nixpkgs,
     home-manager,
     flake-utils,
-    nixos-cosmic,
     ...
   } @ inputs: let
     mkApp = flake-utils.lib.mkApp;
@@ -51,60 +41,49 @@
   in
     mkFlake {
       inherit self inputs nixpkgs home-manager;
-      channelsConfig.allowUnfree = true;
+      overlays = import ./overlays.nix {inherit inputs;};
       sharedOverlays = [
         self.overlays.additions
         self.overlays.modifications
         self.overlays.unstable-packages
       ];
 
-      # host defaults
-      hostDefaults.system = "x86_64-linux";
-      hostDefaults.modules = [];
       hostDefaults.extraArgs = {inherit flake-utils;};
       hostDefaults.specialArgs = {
         inherit inputs;
         inherit (self) outputs;
       };
 
-      hosts.waves = {
+      hosts.wireframe = {
         system = "x86_64-linux";
         modules = [
           inputs.disko.nixosModules.default
-          (import ./disko.nix {device = "/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_with_Heatsink_1TB_S6WSNJ0T900943T";})
-          {
-            nix.settings = {
-              substituters = ["https://cosmic.cachix.org/"];
-              trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="];
-            };
-          }
-          nixos-cosmic.nixosModules.default
-          ./system/waves/configuration.nix
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-          }
-          home-manager.nixosModules.home-manager
-          ./home/valerie/home.nix
+          (import ./hosts/wireframe/disko.nix {device = "/dev/disk/by-id/nvme-Samsung_SSD_979_PRO_with_Heatsink_1TB_S6WSNJ0T900943T";})
+          inputs.impermanence.nixosModules.impermanence
+          ./hosts/wireframe/configuration.nix
         ];
-        output = "nixosConfigurations";
       };
 
-      overlays = import ./overlays {inherit inputs;};
-    }
-    // flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = nixpkgs.legacyPackages.${system};
-      inherit (self) outputs;
-    in {
-      packages = import ./pkgs pkgs;
-
-      apps = {
-        "disko" = {
-          type = "app";
-          program = "${outputs.packages.${system}.disko}/bin/disko";
+      homeConfigurations = {
+        "v@wireframe" = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            overlays = [
+              self.overlays.additions
+              self.overlays.modifications
+              self.overlays.unstable-packages
+              inputs.emacs-overlay.overlays.default
+            ];
+            config = {
+              allowUnfree = true;
+            };
+          };
+          modules = [./hosts/wireframe/home.nix];
+          extraSpecialArgs = {
+            inherit inputs;
+            inherit (self) outputs;
+          };
         };
       };
-
-      formatter = pkgs.alejandra;
-    });
+    };
 }

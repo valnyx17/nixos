@@ -1,0 +1,9 @@
+keys:
+  - &dev age1jqwgu73py5m6zsql6mntqlv7g54pfykgpn8d5emxwezyuf59xqhqvfxtej
+  - &wireframe age1ct3sesrp4e8jv982hauzw9slzkp99gyshcht9ughmfm0k9ze4pps5m3tt8
+creation_rules:
+  - path_regex: secrets/secrets.yaml$
+    key_groups:
+    - age:
+      - *dev
+      - *wireframe
