@@ -9,6 +9,7 @@
     inherit
       (pkgs.unstable)
       steam-run
+      davinci-resolve
       ;
   };
 }

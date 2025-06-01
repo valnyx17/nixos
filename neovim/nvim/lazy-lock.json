@@ -1,0 +1,5 @@
+{
+  "ice-cave.nvim": { "branch": "main", "commit": "e565364ffaebc6a7f1e303789b1dd8f50f107c79" },
+  "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
+  "multicursor.nvim": { "branch": "1.0", "commit": "9eedebdd395bbbc4711081e33b0606c079e054c3" }
+}

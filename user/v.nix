@@ -5,4 +5,5 @@
   ./core.nix
   ./dev.nix
   ./term.nix
+  ../neovim
 ]

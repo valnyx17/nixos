@@ -3,6 +3,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     zen-browser.url = "github:valnyx17/zen-browser-flake";
     flake-utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     home-manager = {
