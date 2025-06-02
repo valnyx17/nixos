@@ -35,7 +35,6 @@
     extraOutputsToInstall = ["doc" "devdoc"];
     packages =
       [
-        inputs.nh.packages.x86_64-linux.default
         inputs.zen-browser.packages.x86_64-linux.default
         (pkgs.discord.override {
           withOpenASAR = false;
@@ -56,7 +55,6 @@
       };
     sessionVariables = {
       NIX_AUTO_RUN = "1";
-      NH_FLAKE = "${config.home.homeDirectory}/nixos";
     };
   };
   nix.package = lib.mkForce pkgs.unstable.nixVersions.latest;

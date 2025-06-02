@@ -151,25 +151,25 @@
   };
 
   xdg.configFile."zellij/config.kdl".text = ''
-      default_shell "${pkgs.zsh}/bin/zsh"
-      show_startup_tips false
-      theme "catppuccin-frappe"
+    default_shell "${pkgs.zsh}/bin/zsh"
+    show_startup_tips false
+    theme "catppuccin-frappe"
 
-      keybinds clear-defaults=true {
-        normal {
-          bind "Ctrl 1" { CloseTab; }
-          bind "Ctrl 2" { NewTab; }
-          bind "Ctrl 3" { GoToPreviousTab; }
-          bind "Ctrl 4" { GoToNextTab; }
-        }
+    keybinds clear-defaults=true {
+      normal {
+        bind "Ctrl 1" { CloseTab; }
+        bind "Ctrl 2" { NewTab; }
+        bind "Ctrl 3" { GoToPreviousTab; }
+        bind "Ctrl 4" { GoToNextTab; }
       }
+    }
 
-      ui {
-        pane_frames {
-          hide_session_name false
-        }
+    ui {
+      pane_frames {
+        hide_session_name false
       }
-    '';
+    }
+  '';
   xdg.configFile."zellij/layouts/default.kdl".text = ''
     layout {
       pane borderless=false

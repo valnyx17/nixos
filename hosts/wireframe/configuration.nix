@@ -17,21 +17,19 @@
     # ../../system/kanata.nix
     ../../system/sshd.nix
     ../../system/pipewire.nix
-    ../../system/lnr.nix
+    ../../system/avahifixes.nix
     ../../system/fonts.nix
     ../../system/console.nix
     ../../system/gui.nix
     ../../system/i18n.nix
     ../../system/nix-ld.nix
+    ../../system/nh.nix
   ];
 
   boot.kernelPackages = pkgs.unstable.linuxPackages_latest;
 
   # just in case for thunderbolt
   services.hardware.bolt.enable = true;
-
-  sops.secrets.v-password.neededForUsers = true;
-  sops.secrets.root-password.neededForUsers = true;
   users.mutableUsers = false;
 
   users.users.v = {
@@ -58,6 +56,7 @@
       "uinput"
     ];
   };
+
   users.users.root = {
     shell = pkgs.zsh;
     extraGroups = [];

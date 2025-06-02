@@ -15,5 +15,5 @@
       rate = 48000;
     };
   };
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
 }
