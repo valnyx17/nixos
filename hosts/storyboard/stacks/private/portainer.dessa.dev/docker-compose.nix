@@ -12,8 +12,8 @@
       "portainer_portainer:/data:rw"
     ];
     labels = {
-      "traefik.http.routers.portainerinternalsolviadev.rule" = "Host(`portainer.internal.solvia.dev`)";
-      "traefik.http.services.portainerinternalsolviadev.loadbalancer.server.port" = "9000";
+      "traefik.http.routers.portainerdessadev.rule" = "Host(`portainer.dessa.dev`)";
+      "traefik.http.services.portainerdessadev.loadbalancer.server.port" = "9000";
     };
     log-driver = "journald";
     extraOptions = [

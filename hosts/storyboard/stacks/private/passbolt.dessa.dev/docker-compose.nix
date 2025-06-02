@@ -55,7 +55,7 @@
     image = "passbolt/passbolt:latest-ce";
     environmentFiles = [config.sops.secrets.passbolt_passbolt_docker_env.path];
     environment = {
-      "APP_FULL_BASE_URL" = "https://passbolt.internal.solvia.dev";
+      "APP_FULL_BASE_URL" = "https://passbolt.dessa.dev";
       "DATASOURCES_DEFAULT_DATABASE" = "passbolt";
       "DATASOURCES_DEFAULT_HOST" = "db";
       "DATASOURCES_DEFAULT_USERNAME" = "passbolt";
@@ -65,7 +65,7 @@
       "passbolt_jwt:/etc/passbolt/jwt:rw"
     ];
     labels = {
-      "traefik.http.routers.passboltinternalsolviadev.rule" = "Host(`passbolt.internal.solvia.dev`)";
+      "traefik.http.routers.passboltdessadev.rule" = "Host(`passbolt.dessa.dev`)";
     };
     cmd = ["/usr/bin/wait-for.sh" "-t" "0" "db:3306" "--" "/docker-entrypoint.sh"];
     dependsOn = [

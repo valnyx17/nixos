@@ -90,7 +90,7 @@
       "APP_ENVIRONMENT_ONLY" = "false";
       "APP_SERVICE_AUTHOR" = "rose@solvia.dev";
       "APP_TIMEZONE" = "America/Indiana/Indianapolis";
-      "APP_URL" = "https://pterodactyl.internal.solvia.dev";
+      "APP_URL" = "https://pterodactyl.dessa.dev";
       "CACHE_DRIVER" = "redis";
       "DB_HOST" = "database";
       "DB_PORT" = "3306";
@@ -104,7 +104,7 @@
       "pterodactyl_ptero_var:/app/var:rw"
     ];
     labels = {
-      "traefik.http.routers.pterodactylinternalsolviadev.rule" = "Host(`pterodactyl.internal.solvia.dev`)";
+      "traefik.http.routers.pterodactyldessadev.rule" = "Host(`pterodactyl.dessa.dev`)";
     };
     dependsOn = [
       "pterodactyl-cache"

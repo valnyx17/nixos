@@ -21,10 +21,10 @@
     ./stacks/core/traefik/docker-compose.nix
     ./stacks/core/caddy/docker-compose.nix
     ## Internal
-    ./stacks/private/portainer.internal.solvia.dev/docker-compose.nix
-    ./stacks/private/passbolt.internal.solvia.dev/docker-compose.nix
-    ./stacks/private/pterodactyl.internal.solvia.dev/docker-compose.nix
-    ./stacks/private/immich.internal.solvia.dev/docker-compose.nix
+    ./stacks/private/portainer.dessa.dev/docker-compose.nix
+    ./stacks/private/passbolt.dessa.dev/docker-compose.nix
+    ./stacks/private/pterodactyl.dessa.dev/docker-compose.nix
+    ./stacks/private/immich.dessa.dev/docker-compose.nix
     ## Public
     ./stacks/public/solvia.dev/docker-compose.nix
     ./stacks/public/git.solvia.dev/docker-compose.nix

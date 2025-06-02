@@ -135,8 +135,8 @@
       "/mnt/NASBox/immich/uploads:/usr/src/app/upload:rw"
     ];
     labels = {
-      "traefik.http.routers.immichinternalsolviadev.rule" = "Host(`immich.internal.solvia.dev`)";
-      "traefik.http.services.immichinternalsolviadev.loadbalancer.server.port" = "2283";
+      "traefik.http.routers.immichdessadev.rule" = "Host(`immich.dessa.dev`)";
+      "traefik.http.services.immichdessadev.loadbalancer.server.port" = "2283";
     };
     dependsOn = [
       "immich_postgres"

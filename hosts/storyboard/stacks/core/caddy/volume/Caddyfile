@@ -19,7 +19,7 @@ matrix.solvia.dev, https://matrix.solvia.dev:8448 {
     reverse_proxy /* 127.0.0.1:8000
 }
 
-internal.solvia.dev, *.internal.solvia.dev {
+dessa.dev, *.dessa.dev {
     tls {
         dns cloudflare {env.CF_API_TOKEN}
         resolvers 1.1.1.1
