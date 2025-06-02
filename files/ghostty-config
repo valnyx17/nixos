@@ -20,3 +20,7 @@ keybind = ctrl+shift+t=new_tab
 keybind = ctrl+shift+n=new_window
 keybind = ctrl+shift+r=reload_config
 keybind = ctrl+shift+space=toggle_quick_terminal
+
+clipboard-read = allow
+clipboard-write = allow
+copy-on-select = clipboard

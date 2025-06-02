@@ -34,7 +34,7 @@
   users.mutableUsers = false;
 
   users.motd = ''
-    Welcome to the Storyboard   !
+    Welcome to the Storyboard!
   '';
 
   users.users.v = {

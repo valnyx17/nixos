@@ -7,7 +7,7 @@ let &t_Cs = "\e[4:3m"
 let &t_Ce = "\e[4:0m"
 ]]
 set.hlsearch = true
-set.cmdheight = 1
+set.cmdheight = 0
 set.guicursor = {
   "n-v:block-Cursor/lCursor",
   "i-c-ci-ve:ver35-DiagnosticOk",
@@ -41,7 +41,7 @@ set.breakindentopt = {
   shift = 2
 }
 set.showbreak = "↪ "
-set.updatetime = 200 -- time until swap write, also used for CursorHold
+set.updatetime = 200                                            -- time until swap write, also used for CursorHold
 set.completeopt = { "menu", "menuone", "noinsert", "noselect" } -- display always, force user to select and insert
 set.backup = true
 set.writebackup = true
@@ -96,8 +96,8 @@ set.fillchars = {
   vertleft = "┫",
   vertright = "┣",
   verthoriz = "╋",
-  --eob = " ",
-  eob = "~",
+  eob = " ",
+  --eob = "~",
   -- eob = "╼",
   fold = " ",
   -- foldopen = "",

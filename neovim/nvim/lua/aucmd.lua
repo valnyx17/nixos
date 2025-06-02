@@ -24,3 +24,15 @@ au("LspAttach", {
     end
   end
 })
+
+-- remove once this becomes configurable (extui)
+au("FileType", {
+  pattern = { "msgbox", "msgmore", "msgprompt", "cmdline" },
+  callback = function()
+    api.nvim_set_option_value(
+      "winhl",
+      "Normal:Normal,FloatBorder:FloatBorder",
+      {}
+    )
+  end
+})
