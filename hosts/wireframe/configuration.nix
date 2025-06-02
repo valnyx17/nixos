@@ -15,6 +15,7 @@
     ../../system/security.nix
     ../../system/virtualisation.nix
     # ../../system/kanata.nix
+    ../../system/sshd-disable.nix
     ../../system/sshd.nix
     ../../system/pipewire.nix
     ../../system/avahifixes.nix

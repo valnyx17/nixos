@@ -1,4 +1,4 @@
-{lib, ...}: {
+{...}: {
   services.openssh = {
     enable = true;
     settings = {
@@ -9,5 +9,4 @@
       X11Forwarding = false;
     };
   };
-  systemd.services.sshd.wantedBy = lib.mkForce [];
 }
