@@ -34,7 +34,7 @@
   users.mutableUsers = false;
 
   users.motd = ''
-    Welcome to Andromeda!
+    Welcome to the Storyboard!
   '';
 
   users.users.v = {
