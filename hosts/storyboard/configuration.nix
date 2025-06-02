@@ -34,7 +34,7 @@
   users.mutableUsers = false;
 
   users.motd = ''
-    Welcome to the Storyboard!
+    Welcome to the Storyboard   !
   '';
 
   users.users.v = {
@@ -97,7 +97,7 @@
   networking.wireguard.interfaces = {
     # Reverse Proxy
     wg0 = {
-      ips = ["10.10.0.3/24"];
+      ips = ["10.10.0.3/32"];
       privateKeyFile = config.sops.secrets.reverse_proxy_client_privkey.path;
       table = "69";
 
@@ -106,7 +106,7 @@
 
       peers = [
         {
-          publicKey = "QXDlW73/+hKJu6CPiCmpSWOXqKvJPC+b7E7iuvRpL2A=";
+          publicKey = "xyfAr0txpaWh7i2D0KOjt/T7qTUlkgLEbvc+gUsH3zY=";
           allowedIPs = ["0.0.0.0/0" "::/0"];
           endpoint = "solvia.dev:55107";
           persistentKeepalive = 25;
