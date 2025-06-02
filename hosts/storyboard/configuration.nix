@@ -40,18 +40,23 @@
   users.users.v = {
     uid = 1000;
     description = "SD. V";
+    home = "/home/v";
     hashedPasswordFile = config.sops.secrets.v-password.path;
     isNormalUser = true;
-    home = "/home/v";
     createHome = true;
     shell = pkgs.bash;
-    openssh.authorizedKeys.keys = [
-      (builtins.readFile ../../files/id_user.pub)
-    ];
 
     extraGroups = [
       "wheel"
       "networkmanager"
+    ];
+
+    packages = with pkgs; [
+      git
+    ];
+
+    openssh.authorizedKeys.keys = [
+      (builtins.readFile ../../files/id_user.pub)
     ];
   };
 
