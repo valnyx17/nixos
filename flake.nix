@@ -87,6 +87,17 @@
         ];
       };
 
+      ## Remote VPS
+      hosts.blueprint = {
+        system = "x86_64-linux";
+        modules = [
+          inputs.disko.nixosModules.default
+          (import ./hosts/blueprint/disko.nix {device = "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi-disk-0";})
+          inputs.impermanence.nixosModules.impermanence
+          ./hosts/blueprint/configuration.nix
+        ];
+      };
+
       # Workstations
       ## Laptop
       hosts.wireframe = {

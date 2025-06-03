@@ -6,7 +6,7 @@
 }: let
   inherit (config.lib.file) mkOutOfStoreSymlink;
 in {
-  xdg.configFile.nvim.source = mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/neovim/nvim";
+  xdg.configFile.nvim.source = mkOutOfStoreSymlink "/etc/nixos/neovim/nvim";
 
   programs.neovim = {
     enable = true;

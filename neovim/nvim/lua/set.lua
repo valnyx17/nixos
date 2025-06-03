@@ -81,7 +81,7 @@ set.diffopt = {
   "indent-heuristic",
   "linematch:60",
 }
-set.cursorline = true
+set.cursorline = false
 set.foldlevel = 99
 set.foldlevelstart = 99
 --set.foldmethod = "expr"

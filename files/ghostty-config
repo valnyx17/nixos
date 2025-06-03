@@ -14,7 +14,8 @@ window-padding-x = 10
 window-padding-y = 10
 
 background-blur-radius = 20
-background-opacity = 1
+background-opacity = 0.60
+background-blur = true
 
 keybind = ctrl+shift+t=new_tab
 keybind = ctrl+shift+n=new_window
@@ -24,3 +25,5 @@ keybind = ctrl+shift+space=toggle_quick_terminal
 clipboard-read = allow
 clipboard-write = allow
 copy-on-select = clipboard
+
+app-notifications = no-clipboard-copy

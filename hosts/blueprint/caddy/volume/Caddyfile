@@ -1,0 +1,17 @@
+solvia.dev, *.solvia.dev {
+    tls {
+        dns cloudflare {env.CF_API_TOKEN}
+        resolvers 1.1.1.1
+    }
+
+    reverse_proxy /* 10.10.0.3:8000
+}
+
+matrix.solvia.dev, https://matrix.solvia.dev:8448 {
+    tls {
+        dns cloudflare {env.CF_API_TOKEN}
+        resolvers 1.1.1.1
+    }
+
+    reverse_proxy /* 10.10.0.3:8000
+}
